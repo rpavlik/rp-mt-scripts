@@ -132,7 +132,7 @@ fi
 
 # backup old config, if present
 CONF=$MTROOT/z_config.inc
-CONFBAK==$MTROOT/backup/z_config.inc.bak.pre$DATESTAMP
+CONFBAK==$MTROOT/bak/z_config.inc.bak.pre$DATESTAMP
 mv $CONF $CONFBAK &> /dev/null
 
 # write config file
@@ -155,13 +155,18 @@ $EXTERNALWARNING
 # CS460 Senior Projects 2009 link.  Persevere - it
 # might be several links away.
 
+###############
+# Configuration
 # Root for script data, etc
 MTROOT="$MTROOT"
 
 # Location the config script was run from:
 SCRIPTPATH="$SCRIPTPATH"
 
-# Configuration v2 - handles external scripts now.
+# Now, chainload 'globals'
+source "$MTROOT/scripts/z_globals.inc"
+
+# Configuration v3 - added globals chainload.
 # Generation script updated 2009-04-24 
 # That's all for now!  Have fun!
 
@@ -171,8 +176,8 @@ echo "Creating barebones directories needed by other scripts..."
 mkdir $MTROOT/packages &>/dev/null
 mkdir $MTROOT/scriptlogs &>/dev/null
 mkdir $MTROOT/nuigroup &>/dev/null
-mkdir $MTROOT/backup &>/dev/null
-mkdir $MTROOT/temp &>/dev/null
+mkdir $MTROOT/bak &>/dev/null
+mkdir $MTROOT/tmp &>/dev/null
 mkdir $MTROOT/other3rdparty &>/dev/null
 
 cat > $MTROOT/scriptlogs/$DATESTAMP.$THISSCRIPT.log <<heredoc
@@ -181,11 +186,11 @@ $(uname -a)
 
 Actions
 -------
-Ran script
+Started script
 Backed up old config if applicable to $CONFBAK
 Generated config specifying MTROOT="$MTROOT"
 and SCRIPTPATH="$SCRIPTPATH"
-
+Script terminated successfully
 heredoc
 
 echo "All done!"
