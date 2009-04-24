@@ -174,13 +174,13 @@ heredoc
 
 echo "Creating barebones directories needed by other scripts..."
 mkdir $MTROOT/packages &>/dev/null
-mkdir $MTROOT/scriptlogs &>/dev/null
+mkdir $MTROOT/logs &>/dev/null
 mkdir $MTROOT/nuigroup &>/dev/null
 mkdir $MTROOT/bak &>/dev/null
 mkdir $MTROOT/tmp &>/dev/null
 mkdir $MTROOT/other3rdparty &>/dev/null
 
-cat > $MTROOT/scriptlogs/$DATESTAMP.$THISSCRIPT.log <<heredoc
+cat > $MTROOT/logs/$DATESTAMP.$THISSCRIPT.log <<heredoc
 $DATESTAMP.$THISSCRIPT.log
 $(uname -a)
 

@@ -3,7 +3,7 @@
 # Globals - chainloaded by the config file.
 
 DATESTAMP=$(date +%Y%m%d.%H.%M.%S)
-LOGFILE=$MTROOT/scriptlogs/$DATESTAMP.$THISSCRIPT.log
+LOGFILE=$MTROOT/logs/$DATESTAMP.$THISSCRIPT.log
 
 cat >$LOGFILE <<heredoc
 $DATESTAMP.$THISSCRIPT.log
