@@ -177,8 +177,8 @@ mkdir $MTROOT/packages &>/dev/null
 mkdir $MTROOT/logs &>/dev/null
 mkdir $MTROOT/nuigroup &>/dev/null
 mkdir $MTROOT/bak &>/dev/null
-mkdir $MTROOT/tmp &>/dev/null
-mkdir $MTROOT/other3rdparty &>/dev/null
+mkdir $MTROOT/downloads &>/dev/null
+mkdir $MTROOT/othersoftware &>/dev/null
 
 cat > $MTROOT/logs/$DATESTAMP.$THISSCRIPT.log <<heredoc
 $DATESTAMP.$THISSCRIPT.log
