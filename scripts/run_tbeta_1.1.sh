@@ -29,9 +29,6 @@ pushd . > /dev/null
 TBETASUBDIR=$(ls -p $MTROOT/nuigroup/ 2>/dev/null | grep "tbeta.*lin-bin\/$")
 TBETADIR="$MTROOT/nuigroup/$TBETASUBDIR"
 
-echo $TBETADIR
-
-exit
 if [ "$1" = "-f" ]; then
 	echo "FLOSC disabled by request"
 	log_append "FLOSC disabled by request."
@@ -49,9 +46,12 @@ else
 	fi
 fi
 
-if [ ! -f "$TBETADIR/tbeta/Launch\ tbeta.sh" ]; then
+TBETADIR=$(readlink -f $TBETADIR)
+
+if [ ! -f "$TBETADIR/tbeta/tbeta" ]; then
 	echo "tbeta not found... did you install it using these scripts?"
-	log_append "could not find $TBETADIR/tbeta/Launch\ tbeta.sh so exiting with error code 1!"
+	echo "tbeta directory: $TBETADIR"
+	log_append "could not find $TBETADIR/tbeta/tbeta so exiting with error code 1!"
 	exit 1
 fi
 
