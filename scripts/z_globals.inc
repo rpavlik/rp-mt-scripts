@@ -30,7 +30,7 @@ log_append_override ()
 
 log_append_dated ()
 {
-	echo $1 ($(date +%Y%m%d.%H.%M.%S)) >> $LOGFILE
+	echo "$1 ($(date +%Y%m%d.%H.%M.%S))" >> $LOGFILE
 }
 
 log_end ()
