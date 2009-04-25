@@ -28,9 +28,15 @@ sudo aptitude -u -y --with-recommends install python-pyglet python-numpy python-
 log_append_dated "installed python-pyglet python-numpy python-csound and dependencies"
 
 sudo checkinstall --pkgname=pymt --default --requires="python-pyglet,python-numpy,python-csound" --pakdir=$MTROOT/packages python setup.py install
+sudo mv *.deb $MTROOT/packages
+sudo mv *.tgz $MTROOT/packages
+cd $MTROOT/packages
+sudo chown $USERNAME:$USERNAME *.deb
+sudo chown $USERNAME:$USERNAME *.tgz
 
 log_end
 
+echo "All done!"
 
 echo
 read -p "Press enter or wait 10 seconds to continue..." -t 10

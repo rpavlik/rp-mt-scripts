@@ -15,15 +15,17 @@ THISSCRIPT="update_pymt.sh"
 # NOLOGGING="NOLOGGING"
 source ../z_config.inc
 
+echo "Updating pymt from subversion, please wait..."
 cd $MTROOT/othersoftware/pymt-svn/pymt/
 svn up
 log_append "svn up completed"
-sudo aptitude --default remove pymt
+sudo aptitude remove pymt
 sudo python setup.py clean
 log_append "old package removed, setup.py clean completed."
 
-sudo checkinstall --pkgname=pymt --default --requires="python-pyglet,python-numpy,python-csound" --pakdir=$MTROOT/packages python setup.py install
+sudo checkinstall --pkgname=pymt --default --requires="python-pyglet,python-numpy,python-csound" --pakdir=$MTROOT/packages/ python setup.py install
 log_append_dated "new package built and installed"
+sudo mv *.deb $MTROOT/packages
 sudo mv *.tgz $MTROOT/packages
 cd $MTROOT/packages
 sudo chown $USERNAME:$USERNAME *.deb
