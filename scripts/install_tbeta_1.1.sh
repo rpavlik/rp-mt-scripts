@@ -37,7 +37,7 @@ echo
 
 
 echo "Setting up libpoco, the tbeta problem child..."
-sudo aptitude -u -y --with-recommends install libpoco-dev
+sudo aptitude -y --with-recommends install libpoco-dev
 log_append "Installed libpoco-dev using aptitude, if it wasn't already installed."
 
 echo "Now, you need to either set up a 'fake' version 2 system-wide or"

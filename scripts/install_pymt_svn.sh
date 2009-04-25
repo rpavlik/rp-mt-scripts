@@ -24,7 +24,7 @@ echo
 echo "Now updating apt and installing dependencies from Ubuntu repositories"
 echo
 
-sudo aptitude -u -y --with-recommends install python-pyglet python-numpy python-csound
+sudo aptitude -y --with-recommends install python-pyglet python-numpy python-csound
 log_append_dated "installed python-pyglet python-numpy python-csound and dependencies"
 
 sudo checkinstall --pkgname=pymt --default --requires="python-pyglet,python-numpy,python-csound" --pakdir=$MTROOT/packages python setup.py install
