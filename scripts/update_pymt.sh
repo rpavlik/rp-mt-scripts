@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# update_pymt.sh
+THISSCRIPT="update_pymt.sh"
 # Ryan Pavlik <ryan.pavlik@snc.edu> 2009
 
 # Update a subversion checkout of pymt, and
@@ -11,22 +11,23 @@
 # packages will be in ~/packages along with a backup file made
 # by checkinstall
 
+# include config, global functions, and start log.
+# NOLOGGING="NOLOGGING"
+source ../z_config.inc
 
-
-cd ~/src/pymt-svn/pymt/
+cd $MTROOT/othersoftware/pymt-svn/pymt/
 svn up
-sudo aptitude remove pymt
+log_append "svn up completed"
+sudo aptitude --default remove pymt
 sudo python setup.py clean
-echo
-echo "********"
-echo "Make sure the package name is 'pymt'!"
-echo "********"
-echo
+log_append "old package removed, setup.py clean completed."
 
-sudo checkinstall --pakdir=$HOME/packages python setup.py install
-sudo mv *.tgz $HOME/packages
-cd ~/packages
+sudo checkinstall --pkgname=pymt --default --requires="python-pyglet,python-numpy,python-csound" --pakdir=$MTROOT/packages python setup.py install
+log_append_dated "new package built and installed"
+sudo mv *.tgz $MTROOT/packages
+cd $MTROOT/packages
 sudo chown $USERNAME:$USERNAME *.deb
 sudo chown $USERNAME:$USERNAME *.tgz
+log_end
 
-
+echo "pymt update completed!"

@@ -4,6 +4,10 @@
 
 DATESTAMP=$(date +%Y%m%d.%H.%M.%S)
 LOGFILE=$MTROOT/logs/$DATESTAMP.$THISSCRIPT.log
+REALLOGFILE=$LOGFILE
+if [ "$NOLOGGING" = "NOLOGGING" ]; then
+	LOGFILE=/dev/null
+fi
 
 cat >$LOGFILE <<heredoc
 $DATESTAMP.$THISSCRIPT.log
@@ -14,8 +18,23 @@ Actions
 Started script
 heredoc
 
-function log_append()
+log_append ()
 {
 	echo $1 >> $LOGFILE
+}
+
+log_append_override ()
+{
+	echo $1 >> $REALLOGFILE
+}
+
+log_append_dated ()
+{
+	echo $1 ($(date +%Y%m%d.%H.%M.%S)) >> $LOGFILE
+}
+
+log_end ()
+{
+	echo "Script ended at $(date +%Y%m%d.%H.%M.%S)" >> $LOGFILE
 }
 
