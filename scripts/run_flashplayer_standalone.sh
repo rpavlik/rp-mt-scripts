@@ -13,16 +13,16 @@ source z_globals.inc
 
 pushd . > /dev/null
 
-cd $MTROOT/othersoftware/flashplayer_standalone/standalone/release
-
 if [ "$1" != "" ];then
 	# we were passed a specific flash file to run
-	FLASHFILE="$(readlink -f -n $(pwd)/$1)"
+	FLASHFILE=$(readlink -f -n "$(pwd)/$1")
 	log_append "attempting to run $FLASHFILE"
-	[ -f "$FLASHFILE" ] && ./flashplayer $FLASHFILE || echo "$FLASHFILE not found..."
+	cd $(dirname $FLASHFILE)
+	[ -f "$FLASHFILE" ] && $MTROOT/othersoftware/flashplayer_standalone/standalone/release/flashplayer $FLASHFILE || echo "$FLASHFILE not found..."
 else
 	# just run the player
 	log_append "just running the standalone player."
+	cd $MTROOT/othersoftware/flashplayer_standalone/standalone/release
 	./flashplayer
 fi
 
