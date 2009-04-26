@@ -11,6 +11,12 @@ THISSCRIPT="install_tbeta_1.1.sh"
 # NOLOGGING="NOLOGGING"
 source z_globals.inc
 
+if [ -d "$MTROOT/nuigroup/tbeta-1.1-lin-bin" ]; then
+	echo "Skipping installation of tbeta 1.1..."
+	echo "Apparently already installed in $(readlink -f -n $MTROOT/nuigroup/tbeta-1.1-lin-bin)"
+	exit
+fi
+
 if [ -f "$MTROOT/downloads/tbeta-1.1-lin-bin.tar.gz" ]; then
 	echo "Apparently found download in $MTROOT/downloads/tbeta-1.1-lin-bin.tar.gz - skipping download"
 	log_append "Found what looks like the download at $MTROOT/downloads/tbeta-1.1-lin-bin.tar.gz, skipping download"

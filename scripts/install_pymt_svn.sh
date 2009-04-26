@@ -12,6 +12,15 @@ THISSCRIPT="install_pymt_svn.sh"
 source z_globals.inc
 
 pushd . >/dev/null
+
+if [ -d "$MTROOT/othersoftware/pymt-svn/pymt" ]; then
+	echo "Skipping installation of pymt from svn, running update instead."
+	echo "Apparently already installed in $(readlink -f -n $MTROOT/othersoftware/pymt-svn/pymt)"
+	cd $MTROOT/scripts
+	./update_pymt.sh
+	exit $?
+fi
+
 echo "Checking out a copy of pymt from version control"
 echo "This could take a while..."
 sleep 3
@@ -30,7 +39,9 @@ sudo aptitude -y --with-recommends install python-pyglet python-numpy python-cso
 log_append_dated "installed python-pyglet python-numpy python-csound and dependencies"
 
 cd $MTROOT/othersoftware/pymt-svn/pymt
+
 sudo checkinstall --pkgname=pymt --pkgversion=$PKGVERSION --pkgrelease="$(date +%Y%m%d%H%M%S)" --default --requires="python-pyglet,python-numpy" --maintainer="svn using rp-mt-scripts" --pakdir=$MTROOT/packages python setup.py install
+
 sudo mv *.deb $MTROOT/packages
 sudo mv *.tgz $MTROOT/packages
 cd $MTROOT/packages

@@ -10,6 +10,13 @@ THISSCRIPT="install_flashplayer_standalone.sh"
 source z_globals.inc
 
 pushd . > /dev/null
+
+if [ -d "$MTROOT/othersoftware/flashplayer_standalone" ]; then
+	echo "Skipping installation of flash player standalone..."
+	echo "Apparently already installed in $(readlink -f -n $MTROOT/othersoftware/flashplayer_standalone)"
+	exit
+fi
+
 FOUNDFILE=$(ls -p $MTROOT/downloads/ 2>/dev/null | grep "flash\_player\_.*gz$")
 if [ -f "$MTROOT/downloads/$FOUNDFILE" ]; then
 	echo "Apparently found download in $MTROOT/downloads/$FOUNDFILE - skipping download"
