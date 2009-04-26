@@ -56,7 +56,7 @@ until [ $(pwd) = $SENTINEL ]; do
 
 	MTROOT="$(pwd)"
 	# until we find our indicator or can't go up further, go up a level
-	until [ -f "$MTROOT/$INDICATOR" -o $MTROOT = "$(readlink -f $MTROOT)" ]; do
+	until [ -f "$MTROOT/$INDICATOR" -o $MTROOT = "$(dirname $MTROOT)" ]; do
 		MTROOT=$(dirname $MTROOT)
 	done
 
