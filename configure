@@ -5,13 +5,16 @@ THISSCRIPT="configure"
 
 # First-run configuration.
 
-DATESTAMPORIG=$(date +%Y%m%d.%H.%M.%S)
+DATESTAMPORIG="$(date +%Y%m%d.%H.%M.%S)"
+LOC=$0
+MYFULLPATH="$(readlink -f -n $LOC)"
+MYPARENTDIR="$(dirname $MYFULLPATH)"
 
 echo
-echo "----Configuring (running scripts/1_mt_scripts_configuration.sh)..."
+echo "----Configuring (running $MYFULLPATH/scripts/1_mt_scripts_configuration.sh)..."
 
 pushd . >/dev/null
-cd scripts
+cd $MYFULLPATH/scripts
 chmod +x *.sh
 ./1_mt_scripts_configuration.sh
 RV=$?
@@ -21,7 +24,9 @@ if [ RV -ne 0 ]; then
 	exit 1
 fi
 
-"-----Configuration apparently successful.  Setting up next stage."
+echo "-----Configuration apparently successful.  Setting up next stage."
+
+cd $MYFULLPATH
 source z_config.inc
 log_append "this script was actually started at $DATESTAMPORIG"
 log_append_dated "Now building 'install' script"
@@ -54,14 +59,26 @@ chmod +x install.sh
 chmod -x $THISSCRIPT
 touch '$THISSCRIPT.ran-$DATESTAMPORIG.log'
 log_append "created install.sh as executable to chainload 1_install_all_default.sh"
+popd >/dev/null
 
-echo "Configure complete, this script disabled!"
+echo "-----"
+echo "Configure complete! This script has been disabled for safety."
 echo "If you ever move the location of this directory tree,"
 echo "please run scripts/1_mt_scripts_configure.sh in the new location"
+echo "to update the configuration."
 
 echo
 echo "Next step: run ./install.sh for a default install"
-echo "or run install scripts in scripts/ as desired."
-read -p "Press enter or wait 10 seconds to return to command line..." -t 10
+echo "or run individual install scripts in scripts/ as desired."
+echo
+echo "Press enter or wait 10 seconds to return to command line, or"
+echo "type 'install', no quotes, and hit enter to start a default install"
+read -t 10 answer
+if [ "$answer" = 'install' ]; then
+	echo "Starting a default install..."
+	cd $MYFULLPATH	
+	./install.sh
+fi
+
 echo
 
