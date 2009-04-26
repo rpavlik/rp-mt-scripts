@@ -11,9 +11,23 @@ source z_globals.inc
 
 pushd . > /dev/null
 
+cat > $MTROOT/downloads/install_flashplayer_standalone_security.html <<heredoc
+<html><body>
+<h1>install_flashplayer.standalone.sh - Flash Security Step</h1>
+<p>You need to add $MTROOT/nuigroup/tbeta-1.1-lin-bin/demos/ to the global security settings in the popup window.  Also add any other directories you might store multitouch flash files in.</p>
+<script>
+window.open("http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html" width="100%" height="400px")
+</script>
+<p><strong><a href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html" target="_new">Open flash security manager in new window</a></strong></p>
+
+</body></html>
+heredoc
+
 if [ -d "$MTROOT/othersoftware/flashplayer_standalone" ]; then
 	echo "Skipping installation of flash player standalone..."
 	echo "Apparently already installed in $(readlink -f -n $MTROOT/othersoftware/flashplayer_standalone)"
+	echo "Showing the security setting page anyway in case it needs updating."
+	sensible-browser "$MTROOT/downloads/install_flashplayer_standalone_security.html"
 	exit
 fi
 
@@ -49,7 +63,10 @@ tar xzf flashplayer.tar.gz
 log_append "Unzipped internal package in $MTROOT/othersoftware/flashplayer_standalone/standalone/release/"
 
 
-echo "Done!  You can now use the run_flashplayer_standalone.sh script."
+
+sensible-browser "$MTROOT/downloads/install_flashplayer_standalone_security.html"
+
+echo "Done!  Once you finish the security settings in the opened web browser, you can use the run_flashplayer_standalone.sh script."
 log_end
 popd >/dev/null
 pause_exit
