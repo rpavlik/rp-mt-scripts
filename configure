@@ -8,30 +8,29 @@ THISSCRIPT="configure"
 DATESTAMPORIG="$(date +%Y%m%d.%H.%M.%S)"
 LOC=$0
 MYFULLPATH="$(readlink -f -n $LOC)"
-MYPARENTDIR="$(dirname $MYFULLPATH)"
+MYENCLOSINGDIR="$(dirname $MYFULLPATH)"
 
 echo
 echo "----Configuring (running $MYFULLPATH/scripts/1_mt_scripts_configuration.sh)..."
 
 pushd . >/dev/null
-cd $MYFULLPATH/scripts
+cd $MYENCLOSINGDIR/scripts
 chmod +x *.sh
 ./1_mt_scripts_configuration.sh
 RV=$?
 
-if [ RV -ne 0 ]; then
+if [ $RV -ne 0 ]; then
 	echo "-----There seems to have been an error.  Please resolve any problems indicated and try again."
 	exit 1
 fi
 
 echo "-----Configuration apparently successful.  Setting up next stage."
 
-cd $MYFULLPATH
+cd $MYENCLOSINGDIR
+
 source scripts/z_globals.inc
 log_append "this script was actually started at $DATESTAMPORIG"
 log_append_dated "Now building 'install' script"
-
-popd > /dev/null
 
 cat > install.sh <<heredoc
 #!/bin/bash
@@ -52,17 +51,18 @@ RV=$?
 cd ..
 if [ $RV -eq 0 ]; then
 	chmod -x $THISSCRIPT
-	touch '$THISSCRIPT.ran-$DATESTAMP.log'
+	touch "$THISSCRIPT.ran-$DATESTAMP.log"
 fi
 heredoc
 chmod +x install.sh
-chmod -x $THISSCRIPT
-touch '$THISSCRIPT.ran-$DATESTAMPORIG.log'
+#chmod -x $THISSCRIPT
+touch "$THISSCRIPT.ran-$DATESTAMPORIG.log"
 log_append "created install.sh as executable to chainload 1_install_all_default.sh"
 popd >/dev/null
 
 echo "-----"
-echo "Configure complete! This script has been disabled for safety."
+echo "Configure complete!"
+#echo "This script has been disabled for safety."
 echo "If you ever move the location of this directory tree,"
 echo "please run scripts/1_mt_scripts_configure.sh in the new location"
 echo "to update the configuration."

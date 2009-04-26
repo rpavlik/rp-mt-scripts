@@ -24,19 +24,19 @@ INDICATOR="valid-mtroot"
 SENTINEL="$HOME/.xyzzy-mt-temp"
 rmdir $SENTINEL &> /dev/null
 mkdir $SENTINEL
-pushd $SENTINEL >> /dev/null
+pushd $SENTINEL &> /dev/null
 SENTINEL=$(pwd)
 
 # Push fallback location
-pushd $HOME/multitouch/ >> /dev/null
+pushd $HOME/multitouch/ &> /dev/null
 
 # Push script location - most likely
-pushd $SCRIPTPATH >> /dev/null
+pushd $SCRIPTPATH &> /dev/null
 
 # accept paths passed in on command line
 if [ -n "$1" ]; then	
-	pushd $(readlink -n -f $1/multitouch/) >> /dev/null
-	pushd $(readlink -n -f $1/) >> /dev/null
+	pushd $(readlink -n -f $1/multitouch/) &> /dev/null
+	pushd $(readlink -n -f $1/) &> /dev/null
 fi
 
 
@@ -191,10 +191,5 @@ and SCRIPTPATH="$SCRIPTPATH"
 Script terminated successfully
 heredoc
 
-echo "All done!"
-
-echo
-echo "Next step: You can now run software install scripts as desired."
-read -p "Press enter or wait 10 seconds to leave $THISSCRIPT..." -t 10
-echo
+echo "All done with $THISSCRIPT!"
 

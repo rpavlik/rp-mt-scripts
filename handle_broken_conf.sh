@@ -65,7 +65,7 @@ CONFDIR=$1
 [ -f "$CONFDIR/../configure" ] && CONFIG="$CONFDIR/../configure"
 [ -f "$CONFDIR/rp-mt-scripts/configure" ] && CONFIG="$CONFDIR/rp-mt-scripts/configure"
 
-[ "$DUMMY" = "" ] && echo "rp-mt-scripts never configured, can't find configure script, bailing.  Unzip a fresh install." && exit
+[ "$CONFDIR" = "" ] && echo "rp-mt-scripts never configured, can't find configure script, bailing.  Unzip a fresh install." && exit
 
 exec bash $CONFIG
 exit 1
