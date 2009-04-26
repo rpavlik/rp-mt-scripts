@@ -10,7 +10,7 @@ THISSCRIPT="install_libpoco_workaround_global.sh"
 
 # include config, global functions, and start log.
 # NOLOGGING="NOLOGGING"
-source ../z_config.inc
+source z_globals.inc
 
 echo "Creating global symlinks to libPoco*.so.2 for tbeta 1.1"
 echo

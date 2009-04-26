@@ -13,7 +13,7 @@ THISSCRIPT="set_camera_parameters.sh"
 
 # include config, global functions, and start log.
 NOLOGGING="NOLOGGING"
-source ../z_config.inc
+source z_globals.inc
 
 # Grab /dev/video* path of last PWC camera plugged in from the dmesg kernel log
 PWCDEVICE=$(dmesg |grep "pwc: Registered as"|tail -n 1|grep -o "\/dev\/video[0-9]*")

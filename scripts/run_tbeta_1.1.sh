@@ -8,7 +8,7 @@ THISSCRIPT="run_tbeta_1.1.sh"
 
 # include config, global functions, and start log.
 # NOLOGGING="NOLOGGING"
-source ../z_config.inc
+source z_globals.inc
 
 
 if [ "$1" = "--help" -o   "$1" = "--help" ]; then 

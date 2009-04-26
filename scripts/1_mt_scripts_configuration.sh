@@ -162,43 +162,9 @@ MTROOT="$MTROOT"
 
 # Location the config script was run from:
 SCRIPTPATH="$SCRIPTPATH"
-heredoc
-
-cat >> $CONF <<"heredoc"
-###############
-# Brainy bits...
-
-# Check to ensure this is still a valid config
-if [ -f "$MTROOT/valid-mtroot" -a -f "$MTROOT/scripts/z_globals.inc"]; then
-	# Seems to be
-	# Now, chainload 'globals'
-	source "$MTROOT/scripts/z_globals.inc"
-else
-	# Hmm, it is not.  
-	# ok, we better do something about it.
-	# we know that $0 contains the path to the script that called us,
-	# so z_config.inc (this file) must be in the parent directory,
-	# unless $0 is "configure" or "install.sh" in which case it's in the same directory
-
-	INCLUDERPATH="$(readlink -f -n $0)"
-	INCLUDERDIR="$(dirname $INCLUDERPATH)"
-	ISCONFIGURE="$(echo $0 | grep 'configure$')"
-	ISINSTALLSH="$(echo $0 | grep 'install.sh$')"
-	if [ "$ISCONFIGURE$ISINSTALLSH" = "" ]; then
-		CONFDIR="$(dirname $INCLUDERDIR)"
-	else
-		CONFDIR="$INCLUDERDIR"
-	fi
-
-	# Now, we must bail into a "confbroken" handler.
-	cd "$CONFDIR"
-	exec bash handle_broken_conf.sh "$CONFDIR"
-fi
 
 
-
-
-# Configuration v4 - now with validity detection.
+# Configuration v5 - validity detection move to globals, changed chainload order.
 # Generation script updated 2009-04-26 
 # That's all for now!  Have fun!
 

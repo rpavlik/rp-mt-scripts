@@ -7,7 +7,7 @@ THISSCRIPT="install_flashplayer_standalone.sh"
 
 # include config, global functions, and start log.
 # NOLOGGING="NOLOGGING"
-source ../z_config.inc
+source z_globals.inc
 
 pushd . > /dev/null
 FOUNDFILE=$(ls -p $MTROOT/downloads/ 2>/dev/null | grep "flash\_player\_.*gz$")

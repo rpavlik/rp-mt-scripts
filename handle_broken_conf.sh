@@ -5,6 +5,9 @@ THISSCRIPT="handle_broken_conf.sh"
 # it will figure out where this file is and call it, to
 # replace the broken file with the scripted dummy file.
 
+NOTVALID="$(cat err.tmp)"
+
+if [ "$NOTVALID" = "broken" ]; then
 
 cat <<heredoc
 ***********************************************************************
@@ -24,22 +27,45 @@ and should run fine once this configuration problem is ironed out.
 
 heredoc
 
-CONFDIR=$1
+else
 
-echo "Broken configure script indicates it was in $CONFDIR"
-mv "$CONFDIR/z_config.inc $CONFDIR/$(date +%Y%m%d.%H.%M.%S).z_config.inc.broken"
-cat "$CONFDIR/z_config.inc" <<"heredoc"
-# DUMMY
+if [ "$NOTVALID" = "missing" ]; then
 
-[ -f dummy_z_config.inc ] && DUMMY="dummy_z_config.inc"
-[ -f "../dummy_z_config.inc" ] && DUMMY="../dummy_z_config.inc"
-[ -f "rp-mt-scripts/dummy_z_config.inc" ] && DUMMY="rp-mt-scripts/dummy_z_config.inc"
+cat <<heredoc
+***********************************************************************
+                               WARNING!                                  
+You are trying to run one of the rp-mt-scripts without configuring your
+multi-touch system.  The configuration is simple and painless, but it
+does need to be done.
 
-[ "$DUMMY" = "" ] && echo "rp-mt-scripts never configured, can't find dummy, bailing.  Unzip a fresh install." && exit
+First, make sure you unzipped the tarball into its own directory, so
+that you have 'somedir' dedicated to this multi-touch system (no other
+things in it) which has a subdirectory 'scripts' with a bunch of files
+that come with - so you'll have 'somedir/scripts/*.sh'. There should be
+a 'configure' file in somedir, too. 
 
-source $DUMMY
+If you want just a standard setup, that script will tell you at the end
+the next step to take.
+***********************************************************************
+
+The program you tried to run cannot be run without being configured.
 heredoc
 
-source "$CONFDIR/z_config.inc"
+else
 
+echo "Some un-recognized error with conf - please reconfigure."
+
+fi
+fi
+
+
+CONFDIR=$1
+
+[ -f "$CONFDIR/configure" ] && CONFIG="$CONFDIR/configure"
+[ -f "$CONFDIR/../configure" ] && CONFIG="$CONFDIR/../configure"
+[ -f "$CONFDIR/rp-mt-scripts/configure" ] && CONFIG="$CONFDIR/rp-mt-scripts/configure"
+
+[ "$DUMMY" = "" ] && echo "rp-mt-scripts never configured, can't find configure script, bailing.  Unzip a fresh install." && exit
+
+exec bash $CONFIG
 exit 1

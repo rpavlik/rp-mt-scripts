@@ -7,7 +7,7 @@ THISSCRIPT="1_install_all_default.sh"
 
 # include config, global functions, and start log.
 # NOLOGGING="NOLOGGING"
-source ../z_config.inc
+source z_globals.inc
 
 
 # array of scripts to run, in order:

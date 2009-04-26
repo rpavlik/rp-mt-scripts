@@ -8,7 +8,7 @@ THISSCRIPT="remove_libpoco_workaround_global.sh"
 
 # include config, global functions, and start log.
 # NOLOGGING="NOLOGGING"
-source ../z_config.inc
+source z_globals.inc
 
 echo "Removing global symlinks to libPoco*.so.2 for tbeta"
 echo 

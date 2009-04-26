@@ -27,7 +27,7 @@ fi
 echo "-----Configuration apparently successful.  Setting up next stage."
 
 cd $MYFULLPATH
-source z_config.inc
+source scripts/z_globals.inc
 log_append "this script was actually started at $DATESTAMPORIG"
 log_append_dated "Now building 'install' script"
 
@@ -43,7 +43,7 @@ heredoc
 
 cat > install.sh <<"heredoc"
 THISSCRIPT="install.sh"
-source z_config.inc
+source scripts/z_globals.inc
 
 pushd . > /dev/null
 cd $MTROOT/scripts

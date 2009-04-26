@@ -10,7 +10,7 @@
 
 # include config, global functions, and start log.
 # NOLOGGING="NOLOGGING"
-source ../z_config.inc
+source z_globals.inc
 
 echo "Creating symlinks to libPoco*.so.2 in a tbeta 1.1 install"
 echo "set up with these scripts ('local')"

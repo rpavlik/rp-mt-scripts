@@ -9,7 +9,7 @@ THISSCRIPT="install_tbeta_1.1.sh"
 
 # include config, global functions, and start log.
 # NOLOGGING="NOLOGGING"
-source ../z_config.inc
+source z_globals.inc
 
 if [ -f "$MTROOT/downloads/tbeta-1.1-lin-bin.tar.gz" ]; then
 	echo "Apparently found download in $MTROOT/downloads/tbeta-1.1-lin-bin.tar.gz - skipping download"
