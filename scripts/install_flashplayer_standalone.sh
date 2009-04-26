@@ -49,7 +49,7 @@ else
 	# but we'll let grep figure it out.
 
 	DOWNURL=$(wget -q http://www.adobe.com/support/flashplayer/downloads.html -O - |egrep -o "http\://[a-zA-Z0-9\.\_/]*linux_dev\.tar\.gz"|head -n 1)
-	DOWNFILE=$MTROOT/downloads/$(echo $DOWNURL | egrep -o "[a-zA-Z0-9\.\_]*$")
+	DOWNFILE=$(echo $DOWNURL | egrep -o "[a-zA-Z0-9\.\_]*$")
 	wget $DOWNURL
 	log_append_dated "Downloaded $DOWNURL to $MTROOT/downloads"
 fi
