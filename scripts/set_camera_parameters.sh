@@ -11,9 +11,13 @@ THISSCRIPT="set_camera_parameters.sh"
 # This script requires that setpwc be installed:
 # sudo aptitude install setpwc
 
-# include config, global functions, and start log.
+# rp-mt-scripts preamble
+# include global functions, load configuration, and start log.
 NOLOGGING="NOLOGGING"
-source z_globals.inc
+source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/null
+[ $? -ne 0 ] && echo "Cannot find global includes, unzip a fresh copy! Exiting." && exit 1
+# end rp-mt-scripts preamble
+
 
 # Grab /dev/video* path of last PWC camera plugged in from the dmesg kernel log
 PWCDEVICE=$(dmesg |grep "pwc: Registered as"|tail -n 1|grep -o "\/dev\/video[0-9]*")

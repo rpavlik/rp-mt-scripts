@@ -7,9 +7,12 @@ THISSCRIPT="install_tbeta_1.1.sh"
 # then installs packages required for tbeta 1.1 to run on Ubuntu 9.04.
 # You also need to use the libpoco workaround scripts.
 
-# include config, global functions, and start log.
+# rp-mt-scripts preamble
+# include global functions, load configuration, and start log.
 # NOLOGGING="NOLOGGING"
-source z_globals.inc
+source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/null
+[ $? -ne 0 ] && echo "Cannot find global includes, unzip a fresh copy! Exiting." && exit 1
+# end rp-mt-scripts preamble
 
 if [ -d "$MTROOT/nuigroup/tbeta-1.1-lin-bin" ]; then
 	echo "Skipping installation of tbeta 1.1..."

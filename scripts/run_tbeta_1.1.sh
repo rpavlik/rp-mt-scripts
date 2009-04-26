@@ -6,9 +6,12 @@ THISSCRIPT="run_tbeta_1.1.sh"
 # Sets up a quickcam pro 4000 and runs tbeta as installed by another
 # script in this package or at the path passed to the script.
 
-# include config, global functions, and start log.
+# rp-mt-scripts preamble
+# include global functions, load configuration, and start log.
 # NOLOGGING="NOLOGGING"
-source z_globals.inc
+source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/null
+[ $? -ne 0 ] && echo "Cannot find global includes, unzip a fresh copy! Exiting." && exit 1
+# end rp-mt-scripts preamble
 
 
 if [ "$1" = "--help" -o   "$1" = "--help" ]; then 

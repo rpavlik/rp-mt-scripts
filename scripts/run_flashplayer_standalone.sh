@@ -6,9 +6,12 @@ THISSCRIPT="run_flashplayer_standalone.sh"
 # Runs the standalone flashplayer
 # set up using these scripts
 
-# include config, global functions, and start log.
-# NOLOGGING="NOLOGGING"
-source z_globals.inc
+# rp-mt-scripts preamble
+# include global functions, load configuration, and start log.
+NOLOGGING="NOLOGGING"
+source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/null
+[ $? -ne 0 ] && echo "Cannot find global includes, unzip a fresh copy! Exiting." && exit 1
+# end rp-mt-scripts preamble
 
 
 pushd . > /dev/null

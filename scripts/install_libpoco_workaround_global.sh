@@ -8,9 +8,12 @@ THISSCRIPT="install_libpoco_workaround_global.sh"
 # to something else for later distribution versions, or change 2 to
 # something else as requested by tbeta when starting
 
-# include config, global functions, and start log.
+# rp-mt-scripts preamble
+# include global functions, load configuration, and start log.
 # NOLOGGING="NOLOGGING"
-source z_globals.inc
+source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/null
+[ $? -ne 0 ] && echo "Cannot find global includes, unzip a fresh copy! Exiting." && exit 1
+# end rp-mt-scripts preamble
 
 echo "Creating global symlinks to libPoco*.so.2 for tbeta 1.1"
 echo

@@ -6,9 +6,12 @@ THISSCRIPT="run_pymt_svn_examples.sh"
 # Runs the examples launcher from a pymt install
 # set up using these scripts
 
-# include config, global functions, and start log.
-# NOLOGGING="NOLOGGING"
-source z_globals.inc
+# rp-mt-scripts preamble
+# include global functions, load configuration, and start log.
+NOLOGGING="NOLOGGING"
+source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/null
+[ $? -ne 0 ] && echo "Cannot find global includes, unzip a fresh copy! Exiting." && exit 1
+# end rp-mt-scripts preamble
 
 
 pushd . > /dev/null

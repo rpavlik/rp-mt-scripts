@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# install_libpoco_workaround_local.sh
+THISSCRIPT="install_libpoco_workaround_local.sh"
 # Ryan Pavlik <ryan.pavlik@snc.edu> 2009
 
 # Create symlinks in the tbeta directory to allow tbeta 1.1 to install on
@@ -8,9 +8,12 @@
 # to something else for later distribution versions, or change 2 to
 # something else as requested by tbeta when starting
 
-# include config, global functions, and start log.
+# rp-mt-scripts preamble
+# include global functions, load configuration, and start log.
 # NOLOGGING="NOLOGGING"
-source z_globals.inc
+source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/null
+[ $? -ne 0 ] && echo "Cannot find global includes, unzip a fresh copy! Exiting." && exit 1
+# end rp-mt-scripts preamble
 
 echo "Creating symlinks to libPoco*.so.2 in a tbeta 1.1 install"
 echo "set up with these scripts ('local')"
