@@ -14,6 +14,7 @@ source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/nul
 # end rp-mt-scripts preamble
 
 echo "Removing global symlinks to libPoco*.so.2 for tbeta"
+sudo -v
 echo 
 
 sudo rm /usr/lib/libPocoFoundation.so.2

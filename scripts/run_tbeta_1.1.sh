@@ -26,6 +26,8 @@ if [ "$1" = "--help" -o   "$1" = "-h" ]; then
 	exit
 fi
 
+sudo -v
+
 FLOSC="no"
 pushd . > /dev/null
 # Detect default tbeta install directory

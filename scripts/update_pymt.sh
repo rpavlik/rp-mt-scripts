@@ -21,6 +21,8 @@ source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/nul
 pushd . > /dev/null
 
 echo "Updating pymt from subversion, please wait..."
+sudo -v
+
 cd $MTROOT/othersoftware/pymt-svn/pymt/
 svn up  | tee $MTROOT/logs/$DATESTAMP.pymt-svn-log.log
 SVNREVISION=$(tail -n 1 $MTROOT/logs/$DATESTAMP.pymt-svn-log.log |grep -o "[0-9]*")

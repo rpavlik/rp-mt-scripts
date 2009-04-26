@@ -24,6 +24,8 @@ if [ -d "$MTROOT/othersoftware/pymt-svn/pymt" ]; then
 	./update_pymt.sh
 	exit $?
 fi
+echo "Installing pymt from svn..."
+sudo -v
 
 echo "Checking out a copy of pymt from version control"
 echo "This could take a while..."

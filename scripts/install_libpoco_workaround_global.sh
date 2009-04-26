@@ -16,6 +16,7 @@ source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/nul
 # end rp-mt-scripts preamble
 
 echo "Creating global symlinks to libPoco*.so.2 for tbeta 1.1"
+sudo -v
 echo
 
 
