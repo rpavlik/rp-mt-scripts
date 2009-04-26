@@ -1,0 +1,65 @@
+#!/bin/bash
+
+THISSCRIPT="configure"
+# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+
+# First-run configuration.
+
+DATESTAMPORIG=$(date +%Y%m%d.%H.%M.%S)
+
+echo
+echo "----Configuring (running scripts/1_mt_scripts_configuration.sh)..."
+
+pushd . >/dev/null
+cd scripts
+chmod +x *.sh
+./1_mt_scripts_configuration.sh
+RV=$?
+
+if [ RV -ne 0 ]; then
+	echo "-----There seems to have been an error.  Please resolve any problems indicated and try again."
+	exit 1
+fi
+
+"-----Configuration apparently successful.  Setting up next stage."
+source z_config.inc
+log_append "this script was actually started at $DATESTAMPORIG"
+log_append_dated "Now building 'install' script"
+
+popd > /dev/null
+
+cat > install.sh <<heredoc
+#!/bin/bash
+# installer built $DATESTAMPORIG by $THISSCRIPT
+
+# Auto-generated install chain file for Ryan Pavlik's
+# multi-touch scripts
+heredoc
+
+cat > install.sh <<"heredoc"
+THISSCRIPT="install.sh"
+source z_config.inc
+
+pushd . > /dev/null
+cd $MTROOT/scripts
+./1_install_all_default.sh
+RV=$?
+cd ..
+if [ $RV -eq 0 ]; then
+	chmod -x $THISSCRIPT
+	touch '$THISSCRIPT.ran-$DATESTAMP.log'
+fi
+heredoc
+chmod +x install.sh
+chmod -x $THISSCRIPT
+touch '$THISSCRIPT.ran-$DATESTAMPORIG.log'
+log_append "created install.sh as executable to chainload 1_install_all_default.sh"
+
+echo "Configure complete!"
+
+echo
+echo "Next step: run ./install.sh for a default install"
+echo "or run install scripts in scripts/ as desired."
+read -p "Press enter or wait 10 seconds to return to command line..." -t 10
+echo
+
