@@ -1,6 +1,6 @@
 #!/bin/bash
 
-THISSCRIPT="run_tbeta_1.1.sh"
+THISSCRIPT="run_tbeta.sh"
 # Ryan Pavlik <ryan.pavlik@snc.edu> 2009
 
 # Sets up a quickcam pro 4000 and runs tbeta as installed by another
@@ -14,28 +14,28 @@ source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/nul
 # end rp-mt-scripts preamble
 
 
-if [ "$1" = "--help" -o   "$1" = "--help" ]; then 
+if [ "$1" = "--help" -o   "$1" = "-h" ]; then 
 	echo "Usage:"
 	echo "$0 -h, --help	show this message"
 	echo "$0 [-f] [tbeta_dir]	start tbeta from this script system or tbeta_dir "
 	echo "				(runs binaries in tbeta_dir/tbeta/ tbeta_dir/demos/)"
 	echo
 	echo "Options:"
-	echo "-f			Do not start FLOSC gateway for flash/AS3 multi-touch"
+	echo "-F			Start FLOSC gateway for flash/AS3 multi-touch"
 
 	exit
 fi
 
-FLOSC="yes"
+FLOSC="no"
 pushd . > /dev/null
 # Detect default tbeta install directory
 TBETASUBDIR=$(ls -p $MTROOT/nuigroup/ 2>/dev/null | grep "tbeta.*lin-bin\/$")
 TBETADIR="$MTROOT/nuigroup/$TBETASUBDIR"
 
-if [ "$1" = "-f" ]; then
-	echo "FLOSC disabled by request"
-	log_append "FLOSC disabled by request."
-	FLOSC="no"
+if [ "$1" = "-F" ]; then
+	echo "FLOSC enabled by request"
+	log_append "FLOSC enabled by request."
+	FLOSC="yes"
 	if [ -n "$2" ]; then
 		echo "Using specified tbeta directory: $2"
 		log_append "Custom directory for tbeta specified: $2"
@@ -71,6 +71,7 @@ echo ""
 if [ $FLOSC = "yes" ]; then
 	echo "Now starting:	Java-based FLOSC gateway in the background (only needed for flash multitouch)..."
 	cd $TBETADIR/demos
+	kill $(ps aw |grep "java.*flosc"|head -n 1|grep -o "^ *[0-9]*") > /dev/null
 	./1\)\ Launch\ FLOSC\ Gateway.sh &
 	log_append "FLOSC gateway started in background, sleeping briefly and continuing..."
 	sleep 3
@@ -120,7 +121,7 @@ if [ $TBETARV -ne 0 ]; then
 	echo "If tbeta did not start, you probably need to run the libpoco workaround"
 fi
 
-kill %$(jobs |grep FLOSC|grep -o "\[[0-9]*\]"|grep -o "[0-9]*") > /dev/null
+kill $(jobs |grep FLOSC|grep -o "\[[0-9]*\]"|grep -o "[0-9]*") > /dev/null
 log_append_dated "tbeta exited, FLOSC gateway shut down if possible"
 
 
