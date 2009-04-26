@@ -55,14 +55,11 @@ if [ $RV -eq 0 ]; then
 fi
 heredoc
 chmod +x install.sh
-#chmod -x $THISSCRIPT
-touch "$THISSCRIPT.ran-$DATESTAMPORIG.log"
+touch "$THISSCRIPT.completed-$DATESTAMPORIG.log"
 log_append "created install.sh as executable to chainload 1_install_all_default.sh"
 popd >/dev/null
 
-echo "-----"
-echo "Configure complete!"
-#echo "This script has been disabled for safety."
+echo "-----Install stage generation complete!"
 echo "If you ever move the location of this directory tree,"
 echo "please run scripts/1_mt_scripts_configure.sh in the new location"
 echo "to update the configuration."
@@ -76,7 +73,8 @@ echo "type 'install', no quotes, and hit enter to start a default install"
 read -t 10 answer
 if [ "$answer" = 'install' ]; then
 	echo "Starting a default install..."
-	cd $MYFULLPATH	
+	echo "-----------------------------"
+	cd $MYENCLOSINGDIR	
 	./install.sh
 fi
 
