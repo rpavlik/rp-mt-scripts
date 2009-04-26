@@ -55,7 +55,9 @@ chmod -x $THISSCRIPT
 touch '$THISSCRIPT.ran-$DATESTAMPORIG.log'
 log_append "created install.sh as executable to chainload 1_install_all_default.sh"
 
-echo "Configure complete!"
+echo "Configure complete, this script disabled!"
+echo "If you ever move the location of this directory tree,"
+echo "please run scripts/1_mt_scripts_configure.sh in the new location"
 
 echo
 echo "Next step: run ./install.sh for a default install"
