@@ -17,7 +17,9 @@ echo "This could take a while..."
 sleep 3
 mkdir $MTROOT/othersoftware/pymt-svn
 cd $MTROOT/othersoftware/pymt-svn
-svn checkout http://pymt.googlecode.com/svn/trunk/ pymt
+svn checkout http://pymt.googlecode.com/svn/trunk/ pymt | tee $MTROOT/logs/$DATESTAMP.pymt-svn-log.log
+SVNREVISION=$(tail -n 1 $MTROOT/logs/$DATESTAMP.pymt-svn-log.log |grep -o "[0-9]*")
+PKGVERSION="0.0.$SVNREVISION"
 log_append_dated "svn checkout completed"
 
 echo
@@ -27,7 +29,8 @@ echo
 sudo aptitude -y --with-recommends install python-pyglet python-numpy python-csound
 log_append_dated "installed python-pyglet python-numpy python-csound and dependencies"
 
-sudo checkinstall --pkgname=pymt --default --requires="python-pyglet,python-numpy,python-csound" --pakdir=$MTROOT/packages python setup.py install
+cd $MTROOT/othersoftware/pymt-svn/pymt
+sudo checkinstall --pkgname=pymt --pkgversion=$PKGVERSION --pkgrelease="$(date +%Y%m%d%H%M%S)" --default --requires="python-pyglet,python-numpy,python-csound" --maintainer="svn using rp-mt-scripts" --pakdir=$MTROOT/packages python setup.py install
 sudo mv *.deb $MTROOT/packages
 sudo mv *.tgz $MTROOT/packages
 cd $MTROOT/packages

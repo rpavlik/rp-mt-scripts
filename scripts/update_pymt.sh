@@ -17,13 +17,16 @@ source ../z_config.inc
 
 echo "Updating pymt from subversion, please wait..."
 cd $MTROOT/othersoftware/pymt-svn/pymt/
-svn up
+svn up  | tee $MTROOT/logs/$DATESTAMP.pymt-svn-log.log
+SVNREVISION=$(tail -n 1 $MTROOT/logs/$DATESTAMP.pymt-svn-log.log |grep -o "[0-9]*")
+PKGVERSION="0.0.$SVNREVISION"
 log_append "svn up completed"
+
 sudo aptitude remove pymt
 sudo python setup.py clean
 log_append "old package removed, setup.py clean completed."
 
-sudo checkinstall --pkgname=pymt --default --requires="python-pyglet,python-numpy,python-csound" --pakdir=$MTROOT/packages/ python setup.py install
+sudo checkinstall --pkgname=pymt --pkgversion=$PKGVERSION --pkgrelease="$(date +%Y%m%d%H%M%S)" --default --requires="python-pyglet,python-numpy,python-csound" --maintainer="svn using rp-mt-scripts" --pakdir=$MTROOT/packages python setup.py install
 log_append_dated "new package built and installed"
 sudo mv *.deb $MTROOT/packages
 sudo mv *.tgz $MTROOT/packages
