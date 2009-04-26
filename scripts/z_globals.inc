@@ -2,9 +2,9 @@
 
 # Globals
 
-source ../z_config.inc
+source ../z_config.inc &> /dev/null
 RV=$?
-[ $RB -ne 0 ] && source z_config.inc && RV=$?
+[ $RV -ne 0 ] && source z_config.inc  &> /dev/null && RV=$?
 
 if [ $RV -ne 0 ]; then
 	# Could not load the config
