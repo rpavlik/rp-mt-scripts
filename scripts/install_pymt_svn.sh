@@ -26,11 +26,11 @@ echo
 echo "Now updating apt and installing dependencies from Ubuntu repositories"
 echo
 
-sudo aptitude -y --with-recommends install python-pyglet python-numpy python-csound
+sudo aptitude -y --with-recommends install python-pyglet python-numpy python-csound python-liblo
 log_append_dated "installed python-pyglet python-numpy python-csound and dependencies"
 
 cd $MTROOT/othersoftware/pymt-svn/pymt
-sudo checkinstall --pkgname=pymt --pkgversion=$PKGVERSION --pkgrelease="$(date +%Y%m%d%H%M%S)" --default --requires="python-pyglet,python-numpy,python-csound" --maintainer="svn using rp-mt-scripts" --pakdir=$MTROOT/packages python setup.py install
+sudo checkinstall --pkgname=pymt --pkgversion=$PKGVERSION --pkgrelease="$(date +%Y%m%d%H%M%S)" --default --requires="python-pyglet,python-numpy" --maintainer="svn using rp-mt-scripts" --pakdir=$MTROOT/packages python setup.py install
 sudo mv *.deb $MTROOT/packages
 sudo mv *.tgz $MTROOT/packages
 cd $MTROOT/packages
