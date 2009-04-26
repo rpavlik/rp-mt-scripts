@@ -38,3 +38,10 @@ log_end ()
 	echo "Script ended at $(date +%Y%m%d.%H.%M.%S)" >> $LOGFILE
 }
 
+pause_exit ()
+{
+	echo
+	read -p "Press enter or wait 10 seconds to leave $0..." -t 10
+	echo
+}
+

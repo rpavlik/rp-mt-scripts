@@ -30,7 +30,4 @@ echo "To run tbeta, use the run_tbeta.sh script in this"
 echo "directory to set up a QuickCam Pro 4000 then execute tbeta"
 
 log_end
-
-echo
-read -p "Press enter or wait 10 seconds to continue..." -t 10
-echo
+pause_exit

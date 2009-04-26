@@ -15,6 +15,8 @@ THISSCRIPT="update_pymt.sh"
 # NOLOGGING="NOLOGGING"
 source ../z_config.inc
 
+pushd . > /dev/null
+
 echo "Updating pymt from subversion, please wait..."
 cd $MTROOT/othersoftware/pymt-svn/pymt/
 svn up  | tee $MTROOT/logs/$DATESTAMP.pymt-svn-log.log
@@ -33,6 +35,9 @@ sudo mv *.tgz $MTROOT/packages
 cd $MTROOT/packages
 sudo chown $USERNAME:$USERNAME *.deb
 sudo chown $USERNAME:$USERNAME *.tgz
-log_end
 
 echo "pymt update completed!"
+
+log_end
+popd >/dev/null
+pause_exit

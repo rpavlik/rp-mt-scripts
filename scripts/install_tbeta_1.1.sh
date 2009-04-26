@@ -48,10 +48,5 @@ echo "method is probably the safer, smarter one, but only works for that"
 echo "specific copy of tbeta.  If in doubt, use the local script."
 
 log_end
-
-
-echo
-read -p "Press enter or wait 10 seconds to continue..." -t 10
-echo
-
-popd
+popd >/dev/null
+pause_exit

@@ -37,12 +37,8 @@ cd $MTROOT/packages
 sudo chown $USERNAME:$USERNAME *.deb
 sudo chown $USERNAME:$USERNAME *.tgz
 
-log_end
-
 echo "All done!"
 
-echo
-read -p "Press enter or wait 10 seconds to continue..." -t 10
-echo
-
-popd
+log_end
+popd >/dev/null
+pause_exit

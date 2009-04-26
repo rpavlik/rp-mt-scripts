@@ -44,7 +44,7 @@ fi
 if [ $(pwd) = $SENTINEL ]; then
 	echo "Done before we started - nothing pushed? - probably a bug."
 	dirs -v
-	popd
+	popd > /dev/null
 	rmdir $SENTINEL
 	exit 1
 fi
@@ -66,7 +66,7 @@ until [ $(pwd) = $SENTINEL ]; do
 	else
 		# If we haven't found the directory,
 		# move on to the next directory on the stack.
-		popd >> /dev/null
+		popd > /dev/null
 	fi
 done
 
@@ -81,9 +81,9 @@ fi
 # clean up mess from sentinel no matter if we succeeded or not.
 # cleanliness is next to godliness, or something like that.
 until [ "$(pwd)" = $SENTINEL ]; do
-	popd >> /dev/null
+	popd > /dev/null
 done
-popd >> /dev/null
+popd > /dev/null
 rmdir $SENTINEL
 
 # If we failed for whatever reason, leave now.

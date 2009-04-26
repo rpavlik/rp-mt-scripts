@@ -41,12 +41,9 @@ cd $MTROOT/othersoftware/flashplayer_standalone/standalone/release
 tar xzf flashplayer.tar.gz
 log_append "Unzipped internal package in $MTROOT/othersoftware/flashplayer_standalone/standalone/release/"
 
-popd >/dev/null
 
 echo "Done!  You can now use the run_flashplayer_standalone.sh script."
 log_end
-
-echo
-read -p "Press enter or wait 10 seconds to continue..." -t 10
-echo
+popd >/dev/null
+pause_exit
 

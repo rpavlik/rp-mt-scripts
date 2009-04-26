@@ -120,10 +120,12 @@ fi
 kill %$(jobs |grep FLOSC|grep -o "\[[0-9]*\]"|grep -o "[0-9]*") > /dev/null
 log_append_dated "tbeta exited, FLOSC gateway shut down if possible"
 
-log_end
+
 echo 
 echo "*****************"
 echo "tbeta terminated, FLOSC gateway shutdown."
-popd
+log_end
+popd >/dev/null
+pause_exit
 
 
