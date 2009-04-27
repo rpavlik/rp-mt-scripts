@@ -30,14 +30,14 @@ echo "This is your 'last chance' to cancel."
 echo "Type 'yes' and press enter to continue, type anything else"
 echo "and enter to cancel."
 echo
-read -p "Do you want to continue? " confirm
+read -p "Do you want to continue? " answer
 
-[ "$confirm" != "yes" ] && echo "You didn't type 'yes': No shame in that.  Exiting" && log_append "User canceled at confirmation point" && exit 1
-exit
+[ "$answer" != "yes" ] && echo "You didn't type 'yes': No shame in that.  Exiting" && log_append "User canceled at confirmation point" && exit 1
+
 echo
 echo "Please enter your password here so that package installation may proceed."
 echo "If each action takes less than 15 minutes (expected) this should run un-attended past this point."
-sudo echo
+sudo -v
 
 
 INSTALLING=1
