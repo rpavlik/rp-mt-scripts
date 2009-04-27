@@ -1,2 +1,17 @@
 z_config.inc
 install.sh
+*~
+configure.completed*
+/logs/
+/logs/*
+/downloads/
+/downloads/*
+/nuigroup/
+/nuigroup/*
+/othersoftware/
+/othersoftware/*
+/packages/
+/packages/*
+/bak/
+/bak/*
+
