@@ -27,6 +27,10 @@ fi
 echo "Installing pymt from svn..."
 sudo -v
 
+echo "First, installing dependencies (to build and run) from Ubuntu repositories"
+sudo aptitude -y --with-recommends install subversion checkinstall python-pyglet python-numpy python-csound python-liblo
+log_append_dated "installed subversion checkinstall python-pyglet python-numpy python-csound and dependencies"
+
 echo "Checking out a copy of pymt from version control"
 echo "This could take a while..."
 sleep 3
@@ -36,13 +40,6 @@ svn checkout http://pymt.googlecode.com/svn/trunk/ pymt | tee $MTROOT/logs/$DATE
 SVNREVISION=$(tail -n 1 $MTROOT/logs/$DATESTAMP.pymt-svn-log.log |grep -o "[0-9]*")
 PKGVERSION="0.0.$SVNREVISION"
 log_append_dated "svn checkout completed"
-
-echo
-echo "Now updating apt and installing dependencies from Ubuntu repositories"
-echo
-
-sudo aptitude -y --with-recommends install python-pyglet python-numpy python-csound python-liblo
-log_append_dated "installed python-pyglet python-numpy python-csound and dependencies"
 
 cd $MTROOT/othersoftware/pymt-svn/pymt
 
