@@ -1,11 +1,12 @@
 README for rp-mt-scripts
-Software Package Contents: Copyright 2009, Ryan Pavlik <ryan.pavlik@snc.edu>
+rp-mt-scripts: Copyright 2009, Ryan Pavlik <ryan.pavlik@snc.edu>
 
 I'll put them under an open-source license later, but for now, all rights reserved.
 You can download them directly from me, but please do not re-distribute them: not
 quite good enough quality yet.
 
 Quickstart:
+-----------
 
 Make sure that all these files are in a directory of their own:
 that is, you should have a rp-mt-scripts/ directory that just contains the files
@@ -21,10 +22,16 @@ directory: the only exceptions are debian packages properly installed (for
 dependencies and pymt as a python library, packaged) and the optional global
 libpoco workaround (the local version is the default).
 
+Requirements:
+-------------
+ - Ubuntu 9.04 (Ubuntu 8.10 works partially but you must manually backport some packages, including python-liblo )
+
+More Info:
+----------
 If you want more info and better instructions, see my web site:
  - http://compsci.snc.edu/cs460/pavlra/software/rp-mt-scripts/
 
-To see source information, etc, check the GitHub repository:
+To see source code, history, etc, check the GitHub repository:
  - http://github.com/megabyte405/rp-mt-scripts/
 
 If you find a bug, file an issue in my GitHub project:
