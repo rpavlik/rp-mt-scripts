@@ -18,6 +18,8 @@ source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/nul
 [ $? -ne 0 ] && echo "Cannot find global includes, unzip a fresh copy! Exiting." && exit 1
 # end rp-mt-scripts preamble
 
+# sudo not needed for setpwc unless something unusual happens (?)
+# sudo -v
 
 # Grab /dev/video* path of last PWC camera plugged in from the dmesg kernel log
 PWCDEVICE=$(dmesg |grep "pwc: Registered as"|tail -n 1|grep -o "\/dev\/video[0-9]*")
@@ -61,8 +63,8 @@ fi
 # set camera params, silently: 
 echo "PWC camera connected since last reboot, using device $PWCDEVICE"
 echo
-
-setpwc -d $PWCDEVICE  -o 0 -q 0  -S 320,480,30 >& /dev/null
+#-g 32000
+setpwc -d $PWCDEVICE  -o 0 -q 0  -S 320,480,30 #>& /dev/null
 
 # display params
 echo "*****************"

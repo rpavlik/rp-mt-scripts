@@ -26,7 +26,8 @@ if [ "$1" = "--help" -o   "$1" = "-h" ]; then
 	exit
 fi
 
-sudo -v
+# sudo only needed in set_camera_parameters for setpwc if something strange happens.
+# sudo -v
 
 FLOSC="no"
 pushd . > /dev/null
