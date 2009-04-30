@@ -23,7 +23,7 @@ pushd . > /dev/null
 echo "Updating pymt from subversion, please wait..."
 sudo -v
 
-cd $MTROOT/othersoftware/pymt-svn/pymt/
+cd $MTROOT/othersoftware/pymt-hg/pymt/
 hg pull  | tee $MTROOT/logs/$DATESTAMP.pymt-hg-log.log
 hg tip >> $MTROOT/logs/$DATESTAMP.pymt-hg-log.log
 HGREVISION=$(hg tip | head -n 1  |grep -o "[0-9a-f]*^")
