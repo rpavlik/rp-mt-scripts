@@ -74,7 +74,7 @@ echo ""
 if [ $FLOSC = "yes" ]; then
 	echo "Now starting:	Java-based FLOSC gateway in the background (only needed for flash multitouch)..."
 	cd $TBETADIR/demos
-	kill $(ps aw |grep "java.*flosc"|head -n 1|grep -o "^ *[0-9]*") > /dev/null
+	kill $(ps aw |grep "java.*flosc"|head -n 1|grep -o "^ *[0-9]*") &> /dev/null
 	./1\)\ Launch\ FLOSC\ Gateway.sh &
 	log_append "FLOSC gateway started in background, sleeping briefly and continuing..."
 	sleep 3
@@ -91,7 +91,8 @@ echo "*****************"
 echo
 
 cd $TBETADIR/tbeta/
-./Launch\ tbeta.sh
+export LD_LIBRARY_PATH=$(pwd)/libs/
+./tbeta
 TBETARV=$?
 log_append "tbeta started for the first time."
 
@@ -99,13 +100,14 @@ until [ $TBETARV -ne 139 ]; do
 	echo 
 	echo "*****************"
 	echo
-	read -p "Not my fault - tbeta crashed.  Restarting in 10 seconds, press enter to cancel..." -t 10
 	log_append_dated "tbeta crashed with a segfault!"
-	if [ $? -eq 0 ]; then
+	read -p "Not my fault - tbeta crashed.  Restarting in 10 seconds, press enter to cancel..." -t 10
+	RRV=$?
+	if [ $RRV -eq 0 ]; then
 		echo "User chose to exit instead of restart crashed tbeta."
 		log_append_dated "User chose to exit instead of restart crashed tbeta."
 		echo "Shutting down FLOSC gateway and quitting..."
-		kill %$(jobs |grep FLOSC|grep -o "\[[0-9]*\]"|grep -o "[0-9]*") /dev/null
+		kill %$(jobs |grep FLOSC|grep -o "\[[0-9]*\]"|grep -o "[0-9]*") &> /dev/null
 		log_append_dated "Attempted to shut down FLOSC gateway, now exiting with error code 1"
 		exit 1
 	fi
@@ -114,7 +116,8 @@ until [ $TBETARV -ne 139 ]; do
 	echo "*****************"
 	echo "Restarting tbeta..."
 	log_append_dated "tbeta relaunched"
-	./Launch\ tbeta.sh
+	export LD_LIBRARY_PATH=$(pwd)/libs/
+	./tbeta
 	TBETARV=$?
 done
 
