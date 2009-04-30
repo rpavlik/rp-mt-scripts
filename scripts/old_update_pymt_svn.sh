@@ -1,6 +1,6 @@
 #!/bin/bash
 
-THISSCRIPT="update_pymt.sh"
+THISSCRIPT="old_update_pymt_svn.sh"
 # Ryan Pavlik <ryan.pavlik@snc.edu> 2009
 
 # Update a subversion checkout of pymt, and

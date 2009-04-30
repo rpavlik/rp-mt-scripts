@@ -1,11 +1,10 @@
 #!/bin/bash
 
-THISSCRIPT="install_pymt_svn.sh"
+THISSCRIPT="old_install_pymt_svn.sh"
 # Ryan Pavlik <ryan.pavlik@snc.edu> 2009
 
-# Downloads tbeta 1.1 from nuigroup.com, and installs in ~/tbeta-1.1-lin-bin
-# then installs packages required for tbeta 1.1 to run on Ubuntu 9.04.
-# You also need to use the libpoco workaround scripts.
+# Downloads pymt from svn source control and builds a package from it
+# using checkinstall.
 
 # rp-mt-scripts preamble
 # include global functions, load configuration, and start log.

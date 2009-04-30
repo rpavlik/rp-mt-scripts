@@ -1,6 +1,6 @@
 #!/bin/bash
 
-THISSCRIPT="run_pymt_svn_examples.sh"
+THISSCRIPT="old_run_pymt_svn_examples.sh"
 # Ryan Pavlik <ryan.pavlik@snc.edu> 2009
 
 # Runs the examples launcher from a pymt install
