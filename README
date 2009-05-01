@@ -36,10 +36,3 @@ To see source code, history, etc, check the GitHub repository:
 
 If you find a bug, file an issue in my GitHub project:
  - http://github.com/rpavlik/rp-mt-scripts/issues
-
-Todo:
------
- - Look through dpkg logs and make sure I am installing all needed packages
- - Test system on a blank 9.04 install (vmware, use snapshots)
- - Make sure all scripts kill FLOSC correctly and/or investigate Touche so that PyMT and others can correctly access touch data.  (Create a FLOSC kill script?)
- - Add open source licensing (MIT/BSD?)
