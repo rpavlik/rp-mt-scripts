@@ -98,6 +98,16 @@ else
 	echo "not successful - tbeta will use its bundled version"
 fi
 
+echo " - avutil: "
+sudo aptitude -y -q --with-recommends install libavutil-dev
+if [ "$(is_installed libavutil6-dev)" = "Installed" ]; then
+	echo "succeeded, moving aside bundled version in tbeta"
+	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libavutil.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
+	log_append "Moved aside bundled libswscale.* in favor of ubuntu versions"
+else
+	echo "not successful - tbeta will use its bundled version"
+fi
+
 echo "Setting up libpoco, the tbeta problem child..."
 sudo aptitude -y --with-recommends install libpoco-dev
 log_append "Installed libpoco-dev using aptitude, if it wasn't already installed."
