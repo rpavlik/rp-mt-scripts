@@ -14,7 +14,7 @@ source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/nul
 
 
 # array of scripts to run, in order:
-SCRIPTS=("install_flashplayer_standalone.sh" "install_tbeta_1.1.sh" "install_libpoco_workaround_local.sh" "install_pymt_svn.sh")
+SCRIPTS=("install_flashplayer_standalone.sh" "install_tbeta_1.1.sh" "install_libpoco_workaround_local.sh" "install_pymt_hg.sh")
 
 pushd . > /dev/null
 echo
