@@ -1,6 +1,7 @@
 z_config.inc
 install.sh
 *~
+*.bak
 configure.completed*
 /logs/
 /logs/*
