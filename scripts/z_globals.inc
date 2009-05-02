@@ -89,3 +89,8 @@ pause_exit ()
 	echo
 }
 
+is_installed ()
+{
+	$(apt-cache search $1 | grep --invert-match None | grep -o Installed)
+}
+
