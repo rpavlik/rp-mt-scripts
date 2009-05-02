@@ -44,9 +44,11 @@ echo
 echo "Now installing dependencies from Ubuntu repositories"
 echo
 
+sudo aptitude -y -q --with-recommends install freeglut3 freeglut3-dev libglu1-mesa-dev libraw1394-8 libxxf86vm1 libz1g
+
 echo " - opencv: "
 sudo aptitude -y -q --with-recommends install libcv-dev libcvaux-dev
-if [ "$(is_installed libcv1)" = "Installed" ]; then
+if [ "$(is_installed libcv1)" != "" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libcv.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libcv.* in favor of ubuntu versions"
@@ -58,7 +60,7 @@ fi
 
 echo " - v4l: "
 sudo aptitude -y -q --with-recommends install libv4l-0
-if [ "$(is_installed libv4l-0)" = "Installed" ]; then
+if [ "$(dpkg -s libv4l-0| grep -o install\ ok)" = "install ok" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libv4l.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libv4l.* in favor of ubuntu versions"
@@ -70,7 +72,7 @@ fi
 
 echo " - freetype: "
 sudo aptitude -y -q --with-recommends install libfreetype6-dev
-if [ "$(is_installed libfreetype6-dev)" = "Installed" ]; then
+if [ "$(dpkg -s libfreetype6-dev| grep -o install\ ok)" = "install ok" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libfreetype.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libfreetype.* in favor of ubuntu versions"
@@ -80,7 +82,7 @@ fi
 
 echo " - freeimage: "
 sudo aptitude -y -q --with-recommends install libfreeimage-dev
-if [ "$(is_installed libfreeimage-dev)" = "Installed" ]; then
+if [ "$(dpkg -s libfreeimage-dev| grep -o install\ ok)" = "install ok" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libfreeimage* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libfreeimage* in favor of ubuntu versions"
@@ -90,7 +92,7 @@ fi
 
 echo " - swscale: "
 sudo aptitude -y -q --with-recommends install libswscale-dev
-if [ "$(is_installed libswscale6-dev)" = "Installed" ]; then
+if [ "$(dpkg -s libswscale6-dev| grep -o install\ ok)" = "install ok" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libswscale.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libswscale.* in favor of ubuntu versions"
@@ -100,7 +102,7 @@ fi
 
 echo " - avutil: "
 sudo aptitude -y -q --with-recommends install libavutil-dev
-if [ "$(is_installed libavutil6-dev)" = "Installed" ]; then
+if [ "$(dpkg -s libavutil6-dev| grep -o install\ ok)" = "install ok" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libavutil.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libswscale.* in favor of ubuntu versions"

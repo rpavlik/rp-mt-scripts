@@ -91,6 +91,6 @@ pause_exit ()
 
 is_installed ()
 {
-	$(apt-cache search $1 | grep --invert-match None | grep -o Installed)
+	echo $(dpkg -s $1 | grep -o "install ok")
 }
 
