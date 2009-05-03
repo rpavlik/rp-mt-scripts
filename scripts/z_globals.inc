@@ -130,14 +130,12 @@ fi
 UBUNTU=""
 if [ "$(lsb_release -i -s)" = "Ubuntu" ]; then
 	UBUNTU=yes
-	APT=yes
 	UBUNTUVER="$(lsb_release -r -s)"
 	DISTCODENAME="$(lsb_release -c -s)"
 	log_append "Running on $(lsb_release -d -s)"
 else
 	if [ "$(lsb_release -i -s)" = "Debian" ]; then
 		UBUNTU=Debian
-		APT=yes
 		DISTCODENAME="$(lsb_release -c -s)"
 		log_append "Debian, not Ubuntu! Running on $(lsb_release -d -s)"
 	else
