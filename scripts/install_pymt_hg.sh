@@ -55,7 +55,11 @@ cd $MTROOT/packages
 sudo chown $USERNAME:$USERNAME *.deb
 sudo chown $USERNAME:$USERNAME *.tgz
 
-echo "All done!"
+echo
+echo "PyMT (from hg) install completed!"
+echo "You can now run your own PyMT apps or start the included demos with:"
+echo "    ./run_pymt_hg_examples.sh"
+echo "from inside the 'scripts' directory."
 
 log_end
 popd >/dev/null

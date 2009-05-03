@@ -81,7 +81,12 @@ log_append "Installed adobe-flashplugin into Ubuntu for browser flash support (n
 
 sensible-browser "$MTROOT/downloads/install_flashplayer_standalone_security.html"
 
-echo "Done!  Once you finish the security settings in the opened web browser, you can use the run_flashplayer_standalone.sh script."
+echo
+echo "Standalone Flash Player install completed!"
+echo "Once you finish the security settings in the opened web browser, you can run Flash/AS3 multi-touch apps using:"
+echo "    ./run_flashplayer_standalone.sh"
+echo "from inside the 'scripts' directory."
+
 log_end
 popd >/dev/null
 pause_exit

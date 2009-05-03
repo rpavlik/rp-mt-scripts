@@ -29,8 +29,10 @@ echo
 echo "If tbeta doesn't run now, look at this script source for how to"
 echo "fix it if you get a libPoco error."
 echo
-echo "To run tbeta, use the run_tbeta.sh script in this"
-echo "directory to set up a QuickCam Pro 4000 then execute tbeta"
+echo "tBeta install and workaround completed!"
+echo "Now you can start tbeta with:"
+echo "    ./run_tbeta_1.1.sh"
+echo "from inside the 'scripts' directory."
 
 log_end
 pause_exit
