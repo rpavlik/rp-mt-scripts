@@ -78,8 +78,34 @@ tar xzf flashplayer.tar.gz
 log_append "Unzipped internal package in $MTROOT/othersoftware/flashplayer_standalone/standalone/release/"
 
 echo "Installing required Ubuntu packages..."
+log_append "Attemping to install Ubuntu browser flash support (needed to configure standalone player)"
+# Ubuntu keeps changing the package name - rather than attempt to guess based on version,
+# we'll just keep trying until we get one or run out of ideas.
 sudo aptitude -y -q --with-recommends install adobe-flashplugin
-log_append "Installed adobe-flashplugin into Ubuntu for browser flash support (needed to configure standalone player)"
+if [ "$(is_installed adobe-flashplugin)" != "" ]; then
+	echo
+	echo "Success - Flash plugin package installed: adobe-flashplugin"
+	log_append "Installed adobe-flashplugin from Ubuntu."
+else
+	sudo aptitude -y -q --with-recommends install flashplugin-installer
+	if [ "$(is_installed flashplugin-installer)" != "" ]; then
+		echo
+		echo "Success - Flash plugin package installed: flashplugin-installer"
+		log_append "Installed flashplugin-installer from Ubuntu."
+	else
+		sudo aptitude -y -q --with-recommends install flashplugin-nonfree
+		if [ "$(is_installed flashplugin-installer)" != "" ]; then
+			echo
+			echo "Success - Flash plugin package installed: flashplugin-nonfree"
+			log_append "Installed flashplugin-installer from Ubuntu."
+		else
+			echo
+			echo "Failure - Could not install Flash player web plugin - please do it yourself!"
+			log_append "Could not install any Ubuntu Flash player package."
+		fi
+	fi
+fi
+
 
 sensible-browser "$MTROOT/downloads/install_flashplayer_standalone_security.html"
 
