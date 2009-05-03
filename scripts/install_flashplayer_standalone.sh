@@ -107,7 +107,8 @@ else
 fi
 
 
-sensible-browser "$MTROOT/downloads/install_flashplayer_standalone_security.html"
+# Launch browser in background
+nohup sensible-browser "$MTROOT/downloads/install_flashplayer_standalone_security.html" &
 
 echo
 echo "Standalone Flash Player install completed!"
