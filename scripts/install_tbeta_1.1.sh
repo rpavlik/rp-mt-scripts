@@ -45,7 +45,7 @@ echo "Now installing dependencies from Ubuntu repositories"
 echo
 
 echo "System wide dependencies:"
-sudo aptitude -y -q --with-recommends install freeglut3 freeglut3-dev libglu1-mesa-dev libraw1394-8 libxxf86vm1
+sudo aptitude -y -q --with-recommends install freeglut3 freeglut3-dev libglu1-mesa-dev libraw1394-8 libxxf86vm1 default-jre
 
 
 echo "Replacements for bundled dependencies:"
