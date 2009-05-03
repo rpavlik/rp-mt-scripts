@@ -45,23 +45,6 @@ if [ "$NOTVALID" != "" ]; then
 fi
 
 
-
-DATESTAMP=$(date +%Y%m%d.%H.%M.%S)
-LOGFILE=$MTROOT/logs/$DATESTAMP.$THISSCRIPT.log
-REALLOGFILE=$LOGFILE
-if [ "$NOLOGGING" = "NOLOGGING" ]; then
-	LOGFILE=/dev/null
-fi
-
-cat >$LOGFILE <<heredoc
-$DATESTAMP.$THISSCRIPT.log
-$(uname -a)
-
-Actions
--------
-Started script
-heredoc
-
 log_append ()
 {
 	echo $1 >> $LOGFILE
@@ -91,6 +74,74 @@ pause_exit ()
 
 is_installed ()
 {
-	echo $(dpkg -s $1 | grep -o "install ok")
+	if [ "$APT" != "" ]; then
+		echo $(dpkg -s $1 | grep -o "install ok")
+	else
+		echo
+	fi
 }
+
+package_install ()
+{
+	if [ "$APT" != ""]; then
+		# OK, we can try to install somehow
+		if [ "$UBUNTU" != "yes" ]; then
+			echo "NOTE: You're not on Ubuntu - make sure the equivalent of these are installed:"
+			echo "$@"
+			echo "Trying to install them..."
+		fi
+		$APT $@
+	else
+		echo "ERROR: You're not using a Debian/Ubuntu derivative - install these yourself:"
+		echo "$@"
+	fi
+}
+
+
+# Global detection stuff that runs before every script
+
+DATESTAMP=$(date +%Y%m%d.%H.%M.%S)
+LOGFILE=$MTROOT/logs/$DATESTAMP.$THISSCRIPT.log
+REALLOGFILE=$LOGFILE
+if [ "$NOLOGGING" = "NOLOGGING" ]; then
+	LOGFILE=/dev/null
+fi
+
+cat >$LOGFILE <<heredoc
+$DATESTAMP.$THISSCRIPT.log
+$(uname -a)
+
+Actions
+-------
+Started script
+heredoc
+
+# Attempt to find package install tool in Ubuntu, Debian, and similar
+APT=""
+if [ "$(which aptitude)" != ""]; then
+	APT="sudo aptitude -y -q --with-recommends install"
+else
+	if [ "$(which apt-get)" != ""]; then
+		APT="sudo apt-get -y -qq install"
+	fi
+fi
+
+# For the sake of warnings, find out if we're on ubuntu.
+UBUNTU=""
+if [ "$(lsb_release -i -s)" = "Ubuntu" ]; then
+	UBUNTU=yes
+	APT=yes
+	UBUNTUVER="$(lsb_release -v -s)"
+	DISTCODENAME="$(lsb_release -c -s)"
+	log_append "Running on $(lsb_release -d -s)"
+else
+	if [ "$(lsb_release -i -s)" = "Debian" ];
+		UBUNTU=Debian
+		APT=yes
+		DISTCODENAME="$(lsb_release -c -s)"
+		log_append "Debian, not Ubuntu! Running on $(lsb_release -d -s)"
+	else
+		log_append "Not running on Ubuntu or Debian! Running on $(lsb_release -d -s)"
+	fi
+fi
 
