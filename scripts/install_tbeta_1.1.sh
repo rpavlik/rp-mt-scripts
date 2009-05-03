@@ -44,7 +44,7 @@ echo
 echo "Now installing dependencies from Ubuntu repositories"
 echo
 
-sudo aptitude -y -q --with-recommends install freeglut3 freeglut3-dev libglu1-mesa-dev libraw1394-8 libxxf86vm1 libz1g
+sudo aptitude -y -q --with-recommends install freeglut3 freeglut3-dev libglu1-mesa-dev libraw1394-8 libxxf86vm1
 
 echo " - opencv: "
 sudo aptitude -y -q --with-recommends install libcv-dev libcvaux-dev
@@ -92,7 +92,7 @@ fi
 
 echo " - swscale: "
 sudo aptitude -y -q --with-recommends install libswscale-dev
-if [ "$(dpkg -s libswscale6-dev| grep -o install\ ok)" = "install ok" ]; then
+if [ "$(dpkg -s libswscale-dev| grep -o install\ ok)" = "install ok" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libswscale.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libswscale.* in favor of ubuntu versions"
@@ -102,7 +102,7 @@ fi
 
 echo " - avutil: "
 sudo aptitude -y -q --with-recommends install libavutil-dev
-if [ "$(dpkg -s libavutil6-dev| grep -o install\ ok)" = "install ok" ]; then
+if [ "$(dpkg -s libavutil-dev| grep -o install\ ok)" = "install ok" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libavutil.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libswscale.* in favor of ubuntu versions"
