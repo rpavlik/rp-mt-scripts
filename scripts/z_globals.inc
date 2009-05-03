@@ -118,10 +118,10 @@ heredoc
 
 # Attempt to find package install tool in Ubuntu, Debian, and similar
 APT=""
-if [ "$(which aptitude)" != ""]; then
+if [ "$(which aptitude)" != "" ]; then
 	APT="sudo aptitude -y -q --with-recommends install"
 else
-	if [ "$(which apt-get)" != ""]; then
+	if [ "$(which apt-get)" != "" ]; then
 		APT="sudo apt-get -y -qq install"
 	fi
 fi
@@ -131,11 +131,11 @@ UBUNTU=""
 if [ "$(lsb_release -i -s)" = "Ubuntu" ]; then
 	UBUNTU=yes
 	APT=yes
-	UBUNTUVER="$(lsb_release -v -s)"
+	UBUNTUVER="$(lsb_release -r -s)"
 	DISTCODENAME="$(lsb_release -c -s)"
 	log_append "Running on $(lsb_release -d -s)"
 else
-	if [ "$(lsb_release -i -s)" = "Debian" ];
+	if [ "$(lsb_release -i -s)" = "Debian" ]; then
 		UBUNTU=Debian
 		APT=yes
 		DISTCODENAME="$(lsb_release -c -s)"
@@ -144,4 +144,7 @@ else
 		log_append "Not running on Ubuntu or Debian! Running on $(lsb_release -d -s)"
 	fi
 fi
+
+# Make sure our return value is zero
+echo
 
