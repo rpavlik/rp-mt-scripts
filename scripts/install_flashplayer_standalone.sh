@@ -21,7 +21,7 @@ cat > $MTROOT/downloads/install_flashplayer_standalone_security.html <<heredoc
 <h1>install_flashplayer_standalone.sh - Flash Security Step</h1>
 <p>Flash Player Standalone (and the browser plugin package, if not already installed) have been setup successfully.  In order to use Flash with multi-touch software, you need to change its security settings to permit some Flash files to access incoming touch data.</p>
 
-<pYou need to add $MTROOT/nuigroup/tbeta-1.1-lin-bin/demos/ to the global security settings in the popup window.  Also add any other directories you might store multi-touch Flash files in.  You may be able to add the parent directory ( $MTROOT ) to permit Flash files in any subdirectory to use multi-touch.</p>
+<p>You need to add $MTROOT/nuigroup/tbeta-1.1-lin-bin/demos/ to the trusted locations in the global security settings, located on the linked page or popup window.  Also be sure to add any other directories you might store multi-touch Flash files in.  You may be able to add the parent directory ( $MTROOT ) to permit Flash files in any subdirectory to use multi-touch.</p>
 
 <p>If the page says you need to install the Flash plugin, that just means you had your browser already open but Flash not installed when you ran this script.  The script has installed Flash from the Ubuntu repositories for you - just quit and re-start your browser.  You can run ./install_flashplayer_standalone.sh again to display this page again if needed.</p>
 
@@ -81,19 +81,19 @@ echo "Installing required Ubuntu packages..."
 log_append "Attemping to install Ubuntu browser flash support (needed to configure standalone player)"
 # Ubuntu keeps changing the package name - rather than attempt to guess based on version,
 # we'll just keep trying until we get one or run out of ideas.
-sudo aptitude -y -q --with-recommends install adobe-flashplugin
+package_install adobe-flashplugin
 if [ "$(is_installed adobe-flashplugin)" != "" ]; then
 	echo
 	echo "Success - Flash plugin package installed: adobe-flashplugin"
 	log_append "Installed adobe-flashplugin from Ubuntu."
 else
-	sudo aptitude -y -q --with-recommends install flashplugin-installer
+	package_install flashplugin-installer
 	if [ "$(is_installed flashplugin-installer)" != "" ]; then
 		echo
 		echo "Success - Flash plugin package installed: flashplugin-installer"
 		log_append "Installed flashplugin-installer from Ubuntu."
 	else
-		sudo aptitude -y -q --with-recommends install flashplugin-nonfree
+		package_install flashplugin-nonfree
 		if [ "$(is_installed flashplugin-installer)" != "" ]; then
 			echo
 			echo "Success - Flash plugin package installed: flashplugin-nonfree"
