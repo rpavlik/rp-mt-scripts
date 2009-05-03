@@ -15,13 +15,19 @@ source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/nul
 pushd . > /dev/null
 
 cat > $MTROOT/downloads/install_flashplayer_standalone_security.html <<heredoc
-<html><body>
+<html>
+<title>install_flashplayer.standalone.sh - Flash Security Step</title>
+<body>
 <h1>install_flashplayer.standalone.sh - Flash Security Step</h1>
-<p>You need to add $MTROOT/nuigroup/tbeta-1.1-lin-bin/demos/ to the global security settings in the popup window.  Also add any other directories you might store multitouch flash files in.</p>
+<p>Flash Player Standalone (and the browser plugin package, if not already installed) have been setup successfully.  In order to use Flash with multi-touch software, you need to change its security settings to permit some Flash files to access incoming touch data.</p>
+
+<pYou need to add $MTROOT/nuigroup/tbeta-1.1-lin-bin/demos/ to the global security settings in the popup window.  Also add any other directories you might store multi-touch Flash files in.  You may be able to add the parent directory ( $MTROOT ) to permit Flash files in any subdirectory to use multi-touch.</p>
+
 <script>
 window.open("http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html" width="100%" height="400px")
 </script>
-<p><strong><a href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html" target="_new">Open flash security manager in new window</a></strong></p>
+
+<p><strong><a href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html" target="_new">Open Flash security manager in new window</a></strong></p>
 
 </body></html>
 heredoc
@@ -36,7 +42,7 @@ fi
 
 FOUNDFILE=$(ls -p $MTROOT/downloads/ 2>/dev/null | grep "flash\_player\_.*gz$")
 if [ -f "$MTROOT/downloads/$FOUNDFILE" ]; then
-	echo "Apparently found download in $MTROOT/downloads/$FOUNDFILE - skipping download"
+	echo "Apparently found the download in $MTROOT/downloads/$FOUNDFILE - skipping download"
 	log_append "Found what looks like the download at $MTROOT/downloads/$FOUNDFILE, skipping download"
 	DOWNFILE=$FOUNDFILE
 else
@@ -65,7 +71,9 @@ cd $MTROOT/othersoftware/flashplayer_standalone/standalone/release
 tar xzf flashplayer.tar.gz
 log_append "Unzipped internal package in $MTROOT/othersoftware/flashplayer_standalone/standalone/release/"
 
-
+echo "Installing required Ubuntu packages..."
+sudo aptitude -y -q --with-recommends install adobe-flashplugin
+log_append "Installed adobe-flashplugin into Ubuntu for browser flash support (needed to configure standalone player)"
 
 sensible-browser "$MTROOT/downloads/install_flashplayer_standalone_security.html"
 
