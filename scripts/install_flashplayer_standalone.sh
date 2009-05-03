@@ -16,12 +16,14 @@ pushd . > /dev/null
 
 cat > $MTROOT/downloads/install_flashplayer_standalone_security.html <<heredoc
 <html>
-<title>install_flashplayer.standalone.sh - Flash Security Step</title>
+<title>install_flashplayer_standalone.sh - Flash Security Step</title>
 <body>
-<h1>install_flashplayer.standalone.sh - Flash Security Step</h1>
+<h1>install_flashplayer_standalone.sh - Flash Security Step</h1>
 <p>Flash Player Standalone (and the browser plugin package, if not already installed) have been setup successfully.  In order to use Flash with multi-touch software, you need to change its security settings to permit some Flash files to access incoming touch data.</p>
 
 <pYou need to add $MTROOT/nuigroup/tbeta-1.1-lin-bin/demos/ to the global security settings in the popup window.  Also add any other directories you might store multi-touch Flash files in.  You may be able to add the parent directory ( $MTROOT ) to permit Flash files in any subdirectory to use multi-touch.</p>
+
+<p>If the page says you need to install the Flash plugin, that just means you had your browser already open but Flash not installed when you ran this script.  The script has installed Flash from the Ubuntu repositories for you - just quit and re-start your browser.  You can run ./install_flashplayer_standalone.sh again to display this page again if needed.</p>
 
 <script>
 window.open("http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html" width="100%" height="400px")
@@ -86,6 +88,9 @@ echo "Standalone Flash Player install completed!"
 echo "Once you finish the security settings in the opened web browser, you can run Flash/AS3 multi-touch apps using:"
 echo "    ./run_flashplayer_standalone.sh"
 echo "from inside the 'scripts' directory."
+echo
+echo "If you see a message about needing to install Flash player, ignore it"
+echo "and just restart your web browser - the script already installed it."
 
 log_end
 popd >/dev/null
