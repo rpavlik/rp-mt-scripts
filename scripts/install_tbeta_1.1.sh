@@ -44,8 +44,12 @@ echo
 echo "Now installing dependencies from Ubuntu repositories"
 echo
 
+echo "System wide dependencies:"
 sudo aptitude -y -q --with-recommends install freeglut3 freeglut3-dev libglu1-mesa-dev libraw1394-8 libxxf86vm1
 
+
+echo "Replacements for bundled dependencies:"
+echo
 echo " - opencv: "
 sudo aptitude -y -q --with-recommends install libcv-dev libcvaux-dev
 if [ "$(is_installed libcv1)" != "" ]; then
@@ -58,6 +62,7 @@ else
 	echo "not successful - tbeta will use its bundled version"
 fi
 
+echo
 echo " - v4l: "
 sudo aptitude -y -q --with-recommends install libv4l-0
 if [ "$(is_installed libv4l-0)" != "" ]; then
@@ -70,6 +75,7 @@ else
 	echo "not successful - tbeta will use its bundled version"
 fi
 
+echo
 echo " - freetype: "
 sudo aptitude -y -q --with-recommends install libfreetype6-dev
 if [ "$(is_installed libfreetype6-dev)" != "" ]; then
@@ -80,6 +86,7 @@ else
 	echo "not successful - tbeta will use its bundled version"
 fi
 
+echo
 echo " - freeimage: "
 sudo aptitude -y -q --with-recommends install libfreeimage-dev
 if [ "$(is_installed libfreeimage-dev)" != "" ]; then
@@ -90,6 +97,7 @@ else
 	echo "not successful - tbeta will use its bundled version"
 fi
 
+echo
 echo " - swscale: "
 sudo aptitude -y -q --with-recommends install libswscale-dev
 if [ "$(is_installed libswscale-dev)" != "" ]; then
@@ -100,6 +108,7 @@ else
 	echo "not successful - tbeta will use its bundled version"
 fi
 
+echo
 echo " - avutil: "
 sudo aptitude -y -q --with-recommends install libavutil-dev
 if [ "$(is_installed libavutil-dev)" != "" ]; then
@@ -110,6 +119,9 @@ else
 	echo "not successful - tbeta will use its bundled version"
 fi
 
+
+echo
+echo
 echo "Setting up libpoco, the tbeta problem child..."
 sudo aptitude -y --with-recommends install libpoco-dev
 log_append "Installed libpoco-dev using aptitude, if it wasn't already installed."
