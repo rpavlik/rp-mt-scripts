@@ -131,16 +131,19 @@ sudo aptitude -y --with-recommends install libpoco-dev
 log_append "Installed libpoco-dev using aptitude, if it wasn't already installed."
 
 echo
+echo "Now calling the 'install_libpoco_workaround_local.sh' script to"
+echo "set up the workaround for just this install of tBeta."
+echo "There is a global install available, but unless you know what"
+echo "you're doing, it's a bad idea and completely unnecessary."
 echo
-echo "Now, you need to either set up a 'fake' version 2 system-wide or"
-echo "locally in this install of tbeta."
+
+cd $MTROOT/scripts
+./install_libpoco_workaround_local.sh
+
+echo "Now back in the tbeta installer..."
 echo
-echo "Use a 'install_libpoco_workaround' script to do this - the local"
-echo "method is probably the safer, smarter one, but only works for that"
-echo "specific copy of tbeta.  If in doubt, use the local script."
-echo
-echo "tBeta 1.1 install completed!"
-echo "Once you run one of those workarounds, you can start tbeta with:"
+echo "tBeta 1.1 install (with local workaround) completed!"
+echo "Now, you can start tbeta with:"
 echo "    ./run_tbeta_1.1.sh"
 echo "from inside the 'scripts' directory."
 
