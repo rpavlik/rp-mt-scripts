@@ -60,7 +60,7 @@ fi
 
 echo " - v4l: "
 sudo aptitude -y -q --with-recommends install libv4l-0
-if [ "$(dpkg -s libv4l-0| grep -o install\ ok)" = "install ok" ]; then
+if [ "$(is_installed libv4l-0)" != "" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libv4l.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libv4l.* in favor of ubuntu versions"
@@ -72,7 +72,7 @@ fi
 
 echo " - freetype: "
 sudo aptitude -y -q --with-recommends install libfreetype6-dev
-if [ "$(dpkg -s libfreetype6-dev| grep -o install\ ok)" = "install ok" ]; then
+if [ "$(is_installed libfreetype6-dev)" != "" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libfreetype.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libfreetype.* in favor of ubuntu versions"
@@ -82,7 +82,7 @@ fi
 
 echo " - freeimage: "
 sudo aptitude -y -q --with-recommends install libfreeimage-dev
-if [ "$(dpkg -s libfreeimage-dev| grep -o install\ ok)" = "install ok" ]; then
+if [ "$(is_installed libfreeimage-dev)" != "" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libfreeimage* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libfreeimage* in favor of ubuntu versions"
@@ -92,7 +92,7 @@ fi
 
 echo " - swscale: "
 sudo aptitude -y -q --with-recommends install libswscale-dev
-if [ "$(dpkg -s libswscale-dev| grep -o install\ ok)" = "install ok" ]; then
+if [ "$(is_installed libswscale-dev)" != "" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libswscale.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libswscale.* in favor of ubuntu versions"
@@ -102,7 +102,7 @@ fi
 
 echo " - avutil: "
 sudo aptitude -y -q --with-recommends install libavutil-dev
-if [ "$(dpkg -s libavutil-dev| grep -o install\ ok)" = "install ok" ]; then
+if [ "$(is_installed libavutil-dev)" != "" ]; then
 	echo "succeeded, moving aside bundled version in tbeta"
 	mv $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/libavutil.* $MTROOT/nuigroup/tbeta-1.1-lin-bin/tbeta/libs/old/
 	log_append "Moved aside bundled libswscale.* in favor of ubuntu versions"
