@@ -83,7 +83,7 @@ is_installed ()
 
 package_install ()
 {
-	if [ "$APT" != ""]; then
+	if [ "$APT" != "" ]; then
 		# OK, we can try to install somehow
 		if [ "$UBUNTU" != "yes" ]; then
 			echo "NOTE: You're not on Ubuntu - make sure the equivalent of these are installed:"
