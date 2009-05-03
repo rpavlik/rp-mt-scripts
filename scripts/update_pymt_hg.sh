@@ -20,9 +20,11 @@ source z_globals.inc  &> /dev/null || source ./scripts/z_globals.inc &> /dev/nul
 
 pushd . > /dev/null
 
-echo "Updating pymt from subversion, please wait..."
+echo "Starting PyMT (from Mercurial version control) update script..."
+# request password now, for later installs.
 sudo -v
 
+echo "Running hg pull - this could take a while"
 cd $MTROOT/othersoftware/pymt-hg/pymt/
 hg pull  | tee $MTROOT/logs/$DATESTAMP.pymt-hg-log.log
 hg tip >> $MTROOT/logs/$DATESTAMP.pymt-hg-log.log
@@ -30,10 +32,14 @@ HGREVISION=$(hg tip | head -n 1  |grep -o "[0-9a-f]*^")
 PKGVERSION="0.0.hg.$(date +%Y%m%d%H%M%S).r$HGREVISION"
 log_append "hg pull completed"
 
+echo
+echo "Removing old PyMT..."
 sudo aptitude remove pymt
 sudo python setup.py clean
 log_append "old package removed, setup.py clean completed."
 
+echo
+echo "Installing new PyMT.."
 sudo checkinstall --pkgname=pymt --pkgversion=$PKGVERSION --pkgrelease="" --default --requires="python-pyglet,python-numpy,python-csound" --maintainer="hg using rp-mt-scripts" --pakdir=$MTROOT/packages python setup.py install
 log_append_dated "new package built and installed"
 sudo mv *.deb $MTROOT/packages
@@ -42,7 +48,7 @@ cd $MTROOT/packages
 sudo chown $USERNAME:$USERNAME *.deb
 sudo chown $USERNAME:$USERNAME *.tgz
 
-echo "pymt update completed!"
+echo "PyMT update completed!"
 
 log_end
 popd >/dev/null

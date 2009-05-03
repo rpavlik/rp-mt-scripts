@@ -23,25 +23,29 @@ if [ -d "$MTROOT/othersoftware/pymt-hg/pymt" ]; then
 	./update_pymt_hg.sh
 	exit $?
 fi
-echo "Installing pymt from hg..."
+
+echo "Starting PyMT (from Mercurial version control) install script..."
+# request password now, for later installs.
 sudo -v
 
 echo "First, installing dependencies (to build and run) from Ubuntu repositories"
 sudo aptitude -y --with-recommends install mercurial checkinstall python-pyglet python-numpy python-csound python-liblo python-rabbyt
 log_append_dated "installed mercurial checkinstall python-pyglet python-numpy python-csound and dependencies"
 
-echo "Checking out a copy of pymt from version control"
+echo "Checking out a copy of PyMT from version control"
 echo "This could take a while..."
-sleep 3
 mkdir $MTROOT/othersoftware/pymt-hg
 cd $MTROOT/othersoftware/pymt-hg
 hg clone http://pymt.googlecode.com/hg/ pymt | tee $MTROOT/logs/$DATESTAMP.pymt-hg-log.log
+
+# That checkout probably took a while - extending sudo session for safety
+sudo -v
+
+cd $MTROOT/othersoftware/pymt-hg/pymt
 hg tip >> $MTROOT/logs/$DATESTAMP.pymt-hg-log.log
 HGREVISION=$(hg tip | head -n 1  |grep -o "[0-9a-f]*$")
 PKGVERSION="0.0.hg.$(date +%Y%m%d%H%M%S).r$HGREVISION"
 log_append_dated "hg checkout completed"
-
-cd $MTROOT/othersoftware/pymt-hg/pymt
 
 sudo checkinstall --pkgname=pymt --pkgversion=$PKGVERSION --pkgrelease="1" --default --requires="python-pyglet,python-numpy" --maintainer="hg using rp-mt-scripts" --pakdir=$MTROOT/packages python setup.py install
 

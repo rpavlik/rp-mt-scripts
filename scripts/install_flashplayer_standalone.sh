@@ -40,6 +40,10 @@ if [ -d "$MTROOT/othersoftware/flashplayer_standalone" ]; then
 	exit
 fi
 
+echo "Starting standalone Flash Player install script..."
+# request password now, for later installs.
+sudo -v
+
 FOUNDFILE=$(ls -p $MTROOT/downloads/ 2>/dev/null | grep "flash\_player\_.*gz$")
 if [ -f "$MTROOT/downloads/$FOUNDFILE" ]; then
 	echo "Apparently found the download in $MTROOT/downloads/$FOUNDFILE - skipping download"

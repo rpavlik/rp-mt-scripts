@@ -20,6 +20,10 @@ if [ -d "$MTROOT/nuigroup/tbeta-1.1-lin-bin" ]; then
 	exit
 fi
 
+echo "Starting tbeta 1.1 install script..."
+# request password now, for later installs.
+sudo -v
+
 if [ -f "$MTROOT/downloads/tbeta-1.1-lin-bin.tar.gz" ]; then
 	echo "Apparently found download in $MTROOT/downloads/tbeta-1.1-lin-bin.tar.gz - skipping download"
 	log_append "Found what looks like the download at $MTROOT/downloads/tbeta-1.1-lin-bin.tar.gz, skipping download"
