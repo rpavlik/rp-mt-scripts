@@ -16,6 +16,7 @@ class ScriptsWindow:
 		
 		self.window = self.builder.get_object("winMain")
 		self.window.show()
+		self.filename = self.builder.get_object("filechooserbutton1")
 	
 	## GTK+ Signal Handlers
 	def on_winMain_destroy(self, _widget, _callback_data=None):
@@ -25,43 +26,44 @@ class ScriptsWindow:
 	
 	## Automatic tab
 	def on_btnConfigInstall_clicked(self, _widget, _callback_data=None):
-		pass
+		run("./configure")
 			
 	## Manual tab
 	def on_btnConfigureNoInstall_clicked(self, _widget, _callback_data=None):
-		pass
+		run("scripts/1_mt_scripts_configuration.sh")
 	
 	def on_btnInstallTbeta_clicked(self, _widget, _callback_data=None):
-		pass
+		run("scripts/install_tbeta_1.1.sh")
 	
 	def on_btnInstallPocoLocal_clicked(self, _widget, _callback_data=None):
-		pass
+		run("scripts/install_libpoco_workaround_local.sh")
 	
 	def on_btnInstallPocoGlobal_clicked(self, _widget, _callback_data=None):
-		pass
+		run("scripts/install_libpoco_workaround_local.sh")
 	
 	def on_btnInstallFlash_clicked(self, _widget, _callback_data=None):
-		pass
+		run("scripts/install_flashplayer_standalone.sh")
 	
 	def on_btnInstallPyMT_clicked(self, _widget, _callback_data=None):
-		pass
+		run("scripts/install_pymt_hg.sh")
 	
 	## Update tab
 	def on_btnUpdatePyMT_clicked(self, _widget, _callback_data=None):
-		pass
+		run("scripts/update_pymt_hg.sh")
 	
 	## Run tab
 	def on_btnRunTbeta_clicked(self, _widget, _callback_data=None):
-		pass
+		self.tbeta = run("scripts/install_flashplayer_standalone.sh",
+			wait=False)
 	
 	def on_btnRunFlashPlayer_clicked(self, _widget, _callback_data=None):
-		pass
+		run("scripts/run_flashplayer_standalone.sh")
 	
 	def on_btnRunPyMT_clicked(self, _widget, _callback_data=None):
-		pass
+		run("scripts/run_pymt_hg_examples.sh")
 	
 	def on_btnRunOtherPy_clicked(self, _widget, _callback_data=None):
-		pass
+		run("python "+self.filename.get_filename())
 	
 	
 		
