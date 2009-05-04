@@ -41,7 +41,7 @@ class ScriptsWindow:
 		run(MTROOT+"scripts/install_libpoco_workaround_local.sh")
 	
 	def on_btnInstallPocoGlobal_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"scripts/install_libpoco_workaround_local.sh")
+		run(MTROOT+"scripts/install_libpoco_workaround_global.sh")
 	
 	def on_btnInstallFlash_clicked(self, _widget, _callback_data=None):
 		run(MTROOT+"scripts/install_flashplayer_standalone.sh")
@@ -55,7 +55,7 @@ class ScriptsWindow:
 	
 	## Run tab
 	def on_btnRunTbeta_clicked(self, _widget, _callback_data=None):
-		self.tbeta = run(MTROOT+"scripts/install_flashplayer_standalone.sh",
+		self.tbeta = run(MTROOT+"scripts/run_tbeta_1.1.sh",
 			wait=False)
 	
 	def on_btnRunFlashPlayer_clicked(self, _widget, _callback_data=None):
@@ -65,7 +65,7 @@ class ScriptsWindow:
 		run(MTROOT+"scripts/run_pymt_hg_examples.sh")
 	
 	def on_btnRunOtherPy_clicked(self, _widget, _callback_data=None):
-		run([MTROOT+"python", self.filename.get_filename()])
+		run(MTROOT+"python "+ self.filename.get_filename())
 	
 	
 		
@@ -76,7 +76,7 @@ class ScriptsWindow:
 	
 def run(cmdline, show_terminal=True, wait=True):
 	if show_terminal:
-		newcmdline=["gnome-terminal", "-x "]
+		newcmdline=["gnome-terminal", '--command="'+cmdline+'"']
 		newcmdline.extend(cmdline)
 		cmdline=newcmdline
 	
@@ -88,10 +88,9 @@ def run(cmdline, show_terminal=True, wait=True):
 		return process
 	
 if __name__ == "__main__":
-	print __file__
 	
 	# Assume we're located in MTROOT, and go from there.
-	MTROOT=os.path.dirname(__file__)
-	
+	MTROOT=os.path.abspath(os.path.dirname(__file__))+"/"
+	print MTROOT
 	app = ScriptsWindow()
 	app.main()
