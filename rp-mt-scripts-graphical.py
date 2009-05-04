@@ -65,7 +65,7 @@ class ScriptsWindow:
 		run(MTROOT+"scripts/run_pymt_hg_examples.sh")
 	
 	def on_btnRunOtherPy_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"python "+self.filename.get_filename())
+		run([MTROOT+"python", self.filename.get_filename()])
 	
 	
 		
@@ -76,7 +76,9 @@ class ScriptsWindow:
 	
 def run(cmdline, show_terminal=True, wait=True):
 	if show_terminal:
-		cmdline="gnome-terminal -x " + cmdline
+		newcmdline=["gnome-terminal", "-x "]
+		newcmdline.extend(cmdline)
+		cmdline=newcmdline
 	
 	process = subprocess.Popen(cmdline)
 	
