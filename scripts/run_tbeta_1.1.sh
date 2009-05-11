@@ -67,7 +67,7 @@ echo
 echo "Setting up your camera using set_camera_parameters.sh"
 echo 
 
-./set_camera_parameters.sh > /dev/null
+$MTROOT/scripts/set_camera_parameters.sh > /dev/null
 
 echo 
 echo ""
