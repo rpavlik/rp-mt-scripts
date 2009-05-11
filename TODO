@@ -1,7 +1,8 @@
-Todo:
------
+Bugs/Todo/Ideas:
+---------------
+ - Detect config and install status based on flag presence and automatically open to the appropriate tab.
+ - Pass an argument to scripts to eliminate timeout on exit, as an option?
  - Make graphical buttons for config+install or just config not give the user the option to do the other (aka, run automatically)
- - Fix python run button in the graphical app
  - Make sure all scripts kill FLOSC correctly so that PyMT and others can correctly access touch data.  (Create a FLOSC kill script?)
  - Add open source licensing (MIT/BSD?)
 
