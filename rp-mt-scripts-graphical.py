@@ -28,45 +28,45 @@ class ScriptsWindow:
 	
 	## Automatic tab
 	def on_btnConfigInstall_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"./configure")
+		run([MTROOT+"configure"])
 			
 	## Manual tab
 	def on_btnConfigureNoInstall_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"scripts/1_mt_scripts_configuration.sh")
+		run([MTROOT+"scripts/1_mt_scripts_configuration.sh"])
 	
 	def on_btnInstallTbeta_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"scripts/install_tbeta_1.1.sh")
+		run([MTROOT+"scripts/install_tbeta_1.1.sh"])
 	
 	def on_btnInstallPocoLocal_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"scripts/install_libpoco_workaround_local.sh")
+		run([MTROOT+"scripts/install_libpoco_workaround_local.sh"])
 	
 	def on_btnInstallPocoGlobal_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"scripts/install_libpoco_workaround_global.sh")
+		run([MTROOT+"scripts/install_libpoco_workaround_global.sh"])
 	
 	def on_btnInstallFlash_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"scripts/install_flashplayer_standalone.sh")
+		run([MTROOT+"scripts/install_flashplayer_standalone.sh"])
 	
 	def on_btnInstallPyMT_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"scripts/install_pymt_hg.sh")
+		run([MTROOT+"scripts/install_pymt_hg.sh"])
 	
 	## Update tab
 	def on_btnUpdatePyMT_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"scripts/update_pymt_hg.sh")
+		run([MTROOT+"scripts/update_pymt_hg.sh"])
 	
 	## Run tab
 	def on_btnRunTbeta_clicked(self, _widget, _callback_data=None):
-		self.tbeta = run(MTROOT+"scripts/run_tbeta_1.1.sh",
+		self.tbeta = run([MTROOT+"scripts/run_tbeta_1.1.sh"],
 			wait=False)
 	
 	def on_btnRunFlashPlayer_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"scripts/run_flashplayer_standalone.sh")
+		run([MTROOT+"scripts/run_flashplayer_standalone.sh"])
 	
 	def on_btnRunPyMT_clicked(self, _widget, _callback_data=None):
-		run(MTROOT+"scripts/run_pymt_hg_examples.sh")
+		run([MTROOT+"scripts/run_pymt_hg_examples.sh"])
 	
 	def on_btnRunOtherPy_clicked(self, _widget, _callback_data=None):
 		print self.filename.get_filename()
-		run(MTROOT+"python "+ self.filename.get_filename())
+		run([MTROOT+"scripts/run_other_python.sh", self.filename.get_filename()])
 	
 	
 		
@@ -76,11 +76,12 @@ class ScriptsWindow:
 		gtk.main()
 	
 def run(cmdline, show_terminal=True, wait=True):
+	
 	if show_terminal:
-		newcmdline=["gnome-terminal", '--command="'+cmdline+'"']
+		newcmdline=["gnome-terminal",  '--execute']
 		newcmdline.extend(cmdline)
 		cmdline=newcmdline
-	
+
 	process = subprocess.Popen(cmdline)
 	
 	if wait:
