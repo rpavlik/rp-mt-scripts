@@ -65,6 +65,7 @@ class ScriptsWindow:
 		run(MTROOT+"scripts/run_pymt_hg_examples.sh")
 	
 	def on_btnRunOtherPy_clicked(self, _widget, _callback_data=None):
+		print self.filename.get_filename()
 		run(MTROOT+"python "+ self.filename.get_filename())
 	
 	
