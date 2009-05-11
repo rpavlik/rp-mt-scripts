@@ -1,6 +1,7 @@
 README for rp-mt-scripts
 rp-mt-scripts: Copyright 2009, Ryan Pavlik <ryan.pavlik@snc.edu>
 
+This version: v1.0.1 - Released 10 May 2009
 
 Quickstart:
 -----------
@@ -40,3 +41,9 @@ To see source code, history, etc, check the GitHub repository:
 
 If you find a bug, file an issue in my GitHub project:
  - http://github.com/rpavlik/rp-mt-scripts/issues
+
+Version History:
+----------------
+v1.0.1 - Released 10 May 2009
+
+v1.0 - "defense-release" - Released 4 May 2009
