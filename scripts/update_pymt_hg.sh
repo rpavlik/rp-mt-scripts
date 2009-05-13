@@ -26,7 +26,7 @@ sudo -v
 
 echo "Running hg pull - this could take a while"
 cd $MTROOT/othersoftware/pymt-hg/pymt/
-hg pull  | tee $MTROOT/logs/$DATESTAMP.pymt-hg-log.log
+hg pull -u | tee $MTROOT/logs/$DATESTAMP.pymt-hg-log.log
 hg tip >> $MTROOT/logs/$DATESTAMP.pymt-hg-log.log
 HGREVISION=$(hg tip | head -n 1  |grep -o "[0-9a-f]*^")
 PKGVERSION="0.0.hg.$(date +%Y%m%d%H%M%S).r$HGREVISION"
