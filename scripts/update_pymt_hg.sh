@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="update_pymt_hg.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Update a mercurial checkout of pymt, and
 # build a new debian package of it.  If using a new system,
@@ -40,7 +41,7 @@ log_append "old package removed, setup.py clean completed."
 
 echo
 echo "Installing new PyMT.."
-sudo checkinstall --pkgname=pymt --pkgversion=$PKGVERSION --pkgrelease="" --default --requires="python-pyglet,python-numpy,python-csound" --maintainer="hg using rp-mt-scripts" --pakdir=$MTROOT/packages python setup.py install
+sudo checkinstall --pkgname=pymt --pkgversion=$PKGVERSION --pkgrelease="" --default --requires="python-pyglet,python-numpy,python-csound" --maintainer="hg using rp-mt-scripts" --pakdir=$MTROOT/packages --fstrans=no python setup.py install
 log_append_dated "new package built and installed"
 sudo mv *.deb $MTROOT/packages
 sudo mv *.tgz $MTROOT/packages

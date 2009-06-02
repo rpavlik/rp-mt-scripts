@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="remove_libpoco_workaround_global.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Remove system-wide symlinks for tbeta 1.1
 # Reverses what install_libpoco_workaround_global.sh does

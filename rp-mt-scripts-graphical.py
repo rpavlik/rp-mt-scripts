@@ -1,6 +1,9 @@
 #! /usr/bin/env python
 """Main module to create GTK interface to the MT scripts."""
 
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
+
 import os.path
 
 import gtk

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="run_tbeta.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Sets up a quickcam pro 4000 and runs tbeta as installed by another
 # script in this package or at the path passed to the script.

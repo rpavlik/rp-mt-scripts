@@ -1,5 +1,6 @@
 THISSCRIPT="handle_broken_conf.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # In case the configure file figures out that it's broken,
 # it will figure out where this file is and call it, to

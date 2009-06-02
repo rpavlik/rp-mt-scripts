@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="old_update_pymt_svn.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Update a subversion checkout of pymt, and
 # build a new debian package of it.  If using a new system,

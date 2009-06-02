@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="set_camera_parameters.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Configure the QuickCam Pro 4000 or similar PWC (Phillips) webcams
 # for multitouch use:

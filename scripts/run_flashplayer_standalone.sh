@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="run_flashplayer_standalone.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Runs the standalone flashplayer
 # set up using these scripts

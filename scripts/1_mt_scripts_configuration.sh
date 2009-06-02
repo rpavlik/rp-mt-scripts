@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="1_mt_scripts_configuration.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Sets up config file for all scripts in this directory to
 # share with each other.

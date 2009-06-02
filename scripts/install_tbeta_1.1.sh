@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="install_tbeta_1.1.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Downloads tbeta 1.1 from nuigroup.com, and installs in ~/tbeta-1.1-lin-bin
 # then installs packages required for tbeta 1.1 to run on Ubuntu 9.04.

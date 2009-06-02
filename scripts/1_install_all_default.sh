@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="1_install_all_default.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Runs the sensible default scripts to install a full setup.
 

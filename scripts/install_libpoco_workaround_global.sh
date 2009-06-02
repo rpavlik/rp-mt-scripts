@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="install_libpoco_workaround_global.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Create system-wide symlinks to allow tbeta 1.1 to install on
 # ubuntu 9.04 - you might need to change the libpoco so names

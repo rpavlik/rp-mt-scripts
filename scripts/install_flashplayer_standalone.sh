@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="install_flashplayer_standalone.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Downloads and installs the standalone flash player.
 

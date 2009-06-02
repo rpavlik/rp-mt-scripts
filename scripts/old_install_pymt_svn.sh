@@ -1,7 +1,8 @@
 #!/bin/bash
 
 THISSCRIPT="old_install_pymt_svn.sh"
-# Ryan Pavlik <ryan.pavlik@snc.edu> 2009
+# Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
+# See COPYING.txt for license terms
 
 # Downloads pymt from svn source control and builds a package from it
 # using checkinstall.
