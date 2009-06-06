@@ -2,7 +2,7 @@ README for rp-mt-scripts
 rp-mt-scripts: Copyright (c) 2009 Ryan Pavlik <ryan.pavlik@snc.edu>
 Open Source - See COPYING.txt for license terms
 
-This version: v1.0.2 or newer - Released 2 June 2009
+This version: v1.0.3 or newer
 
 Quickstart:
 -----------
@@ -50,6 +50,8 @@ If you find a bug, file an issue in my GitHub project:
 
 Version History:
 ----------------
+v1.0.3 - Released 6 June 2009
+
 v1.0.2 - Released 2 June 2009 - License added
 
 v1.0.1 - Released 10 May 2009

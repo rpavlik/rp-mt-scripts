@@ -36,6 +36,11 @@ log_append "hg pull completed"
 echo
 echo "Removing old PyMT..."
 sudo aptitude remove pymt
+
+# DIRTY DIRTY HACK for checkinstall not doing its job!
+sudo rm -rf /usr/lib/python2.*/site-packages/pymt*
+sudo rm -rf /usr/local/lib/python2.*/site-packages/pymt*
+
 sudo python setup.py clean
 log_append "old package removed, setup.py clean completed."
 
