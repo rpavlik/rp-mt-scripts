@@ -15,6 +15,7 @@ If you want to do this graphically, double-click the file
 "rp-mt-scripts-graphical.py" in that directory and choose "Run", then click
 Configure and Install.
 
+Or, to do it at the command line:
 cd into that directory in a terminal.
 
 ./configure
@@ -25,7 +26,9 @@ directory: the only exceptions are debian packages properly installed (for
 dependencies and pymt as a python library, packaged) and the optional global
 libpoco workaround (the local version is the default).
 
-On a 1Mbit internet connection, it takes about 30 minutes for this to complete.
+Regardless of which way you choose, you have the option of a full default
+install.  On a 1Mbit internet connection, it takes about 30 minutes for this
+to complete.
 
 Requirements:
 -------------
